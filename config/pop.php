@@ -10,4 +10,6 @@ return [
         'Home',
         'other'
     ],
+
+    'def-avatar' => '/',
 ];

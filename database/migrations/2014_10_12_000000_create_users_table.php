@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('avatar')->default('/');
+            $table->string('avatar')->default(config('pop.def-avatar'));
             $table->string('email')->unique();
             $table->text('about')->nullable();
             $table->string('location')->nullable();
