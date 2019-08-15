@@ -20,7 +20,7 @@ class CreateItemsTable extends Migration
             $table->text('details');
             $table->integer('budget');
             $table->smallInteger('cents');
-            $table->jsonb('images')->nullable();
+            $table->text('images')->nullable();
             $table->integer('stock', false, true)->nullable();
             $table->timestamps();
         });

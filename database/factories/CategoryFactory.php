@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(Model::class, function (Faker $faker) {
+$factory->define(App\Category::class, function (Faker $faker) {
     return [
         'base_type' => config('pop.category[' . $faker->numberBetween(0, 5) . ']'),
         'seconder_type' => $faker->jobTitle,
