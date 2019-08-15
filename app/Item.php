@@ -30,4 +30,14 @@ class Item extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function category()
+    {
+        return $this->hasOne('App\Category');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
 }

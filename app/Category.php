@@ -21,4 +21,8 @@ class Category extends Model
         $this->attributes['base_type'] = 'other';
     }
 
+    public function item()
+    {
+        return $this->belongsTo('App\Item');
+    }
 }
