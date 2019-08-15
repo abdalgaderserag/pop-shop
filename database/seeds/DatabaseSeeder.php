@@ -12,9 +12,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         factory(App\User::class, 5)->create()->each(function ($u) {
-
             // Items Factory
-            factory(App\Item::class, 5)->create();
+            factory(App\Item::class, 5)->create()->each(function ($item) {
+                $category = factory(App\Category::class)->make();
+                $category->item_id = $item->id;
+                $category->save();
+            });
         });
     }
 }
