@@ -15,6 +15,11 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('base_type');
+            $table->string('seconder_type');
+            $table->string('location');
+            $table->boolean('exchangeable')->default(false);
+            $table->boolean('used')->default(false);
             $table->timestamps();
         });
     }
