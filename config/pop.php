@@ -7,6 +7,7 @@ return [
         'Men',
         'Women',
         'Gadget',
-        'Home'
+        'Home',
+        'other'
     ],
 ];

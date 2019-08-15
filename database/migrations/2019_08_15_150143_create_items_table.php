@@ -18,7 +18,8 @@ class CreateItemsTable extends Migration
             $table->integer('user_id', false, true);
             $table->string('title');
             $table->text('details');
-            $table->string('budget');
+            $table->integer('budget');
+            $table->smallInteger('cents');
             $table->jsonb('images')->nullable();
             $table->integer('stock', false, true);
             $table->timestamps();
