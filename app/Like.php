@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Like extends Model
 {
-    public function user()
+    /*public function user()
     {
         return $this->belongsTo('App\User');
     }
@@ -14,5 +14,5 @@ class Like extends Model
     public function item()
     {
         return $this->belongsTo('App\Item');
-    }
+    }*/
 }
