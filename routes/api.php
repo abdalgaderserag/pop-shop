@@ -14,11 +14,13 @@ use Illuminate\Http\Request;
 */
 
 
-
-
 //Route::middleware('auth:api')->group(function () {
-
 
 
 //});
 
+Route::get('like', 'Api\Interact\LikeController');
+Route::get('rate', 'Api\Interact\RateController');
+
+Route::apiResource('item', 'Api\Item\ItemController');
+Route::apiResource('cart', 'Api\Money\CartController');
