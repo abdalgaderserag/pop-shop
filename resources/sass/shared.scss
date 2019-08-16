@@ -1,2 +1,26 @@
 // Variables
 @import 'variables';
+
+body {
+  margin: 0;
+  font-family: $font-family-base, $font-family-2, $font-family-3;
+  font-size: $font-size-base;
+  color: $black;
+}
+
+.card {
+  border: 1px solid $black;
+  margin: 4px 0;
+  background-color: $white;
+}
+
+.link-clear {
+  color: $color;
+  text-decoration: unset;
+}
+
+.flex-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}

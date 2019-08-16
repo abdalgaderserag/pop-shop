@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+  font-family: "Myanmar Text", Roboto, "san-seirf";
+  font-size: 1.8vh;
+  color: #373737;
+}
+
+.card {
+  border: 1px solid #373737;
+  margin: 4px 0;
+  background-color: #ffffff;
+}
+
+.link-clear {
+  color: #99c0cc;
+  text-decoration: unset;
+}
+
+.flex-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
