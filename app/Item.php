@@ -7,11 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
 
+    /*protected $hidden = [
+        'cents'
+    ];*/
+
+
+//    assign the cents to budget
     public function getBudgetAttribute($value)
     {
         return $value . '.' . $this->attributes['cents'];
     }
 
+//    turn the array to string and store it in database
+//    used to edit the image store shape
     public function setImagesAttribute($value)
     {
         if (is_array($value)) {
@@ -25,6 +33,7 @@ class Item extends Model
         else
             $this->attributes['images'] = null;
     }
+
 
     public function user()
     {

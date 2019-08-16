@@ -18,7 +18,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $data['items'] = Item::with('user', 'category')->withCount('likes')->orderBy('created_at', 'desc');
+//        get the item with at lest one in stock
+        $data['items'] = Item::where('stock', '!=', 0)->with('user', 'category')->withCount('likes')->orderBy('created_at', 'desc');
 
 //        assign if the user like this
         $i = 0;
@@ -46,19 +47,23 @@ class ItemController extends Controller
         $item->budget = $request->budget;
         $item->cents = $request->cents;
         $item->images = $request->images;
+
+//        check if user enter the amount of item in stock
         if ($request->filled('stock'))
             $item->stock = $request->stock;
         $item->save();
+
+//        create new category to the item
         $category = new Category();
         $category->item_id = $item->id;
         $category->base_type = $request->base_type;
         $category->seconder_type = $request->seconder_type;
         $category->location = $request->location;
-
         $category->exchangeable = $request->exchangeable;
         $category->used = $request->used;
-
         $category->save();
+
+//        assign new category to the item
         $item->category = $category;
         $item->likes_count = 0;
         return response()->json($item, 200);
