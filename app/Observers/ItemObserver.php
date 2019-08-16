@@ -44,7 +44,9 @@ class ItemObserver
      */
     public function deleted(Item $item)
     {
-        //
+        $item->category()->delete();
+        foreach ($item->likes as $like)
+            $like->delete();
     }
 
     /**

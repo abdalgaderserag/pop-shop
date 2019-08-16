@@ -12,9 +12,13 @@ class Cart extends Model
 //        check if item limited why? check the next comment.
         if ($item->stock != null) {
 
+            if ($item->stock == 0) {
+                \session()->flash('outOfStock', 'the item you look for is out of stock');
+                $this->attributes['amount'] = $item->stock;
+            }
 //            if the amount of the cart bigger than the stock amount
 //            assign the amount of item to the cart amount.
-            if ($value > $item->stock) {
+            elseif ($value > $item->stock) {
 //                TODO : bind this to the view.
                 \session()->flash('lessStock', 'the item amount in the stock is less than what you want');
                 $this->attributes['amount'] = $item->stock;
