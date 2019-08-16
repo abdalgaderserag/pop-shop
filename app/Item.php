@@ -7,9 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
 
-    /*protected $hidden = [
+    protected $hidden = [
         'cents'
-    ];*/
+    ];
+
+
+    public function getStockAttribute($value)
+    {
+        if ($value == null)
+            return 'unlimited';
+        return $value;
+    }
 
 
 //    assign the cents to budget
