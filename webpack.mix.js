@@ -12,9 +12,6 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/home.scss', 'public/css')
-    .sass('resources/sass/comments.scss', 'public/css')
-    .sass('resources/sass/pop-up.scss', 'public/css')
-    .sass('resources/sass/profile.scss', 'public/css');
+    .sass('resources/sass/shared.scss', 'public/shared/css')
+    .sass('resources/sass/items.scss', 'public/css');
 
