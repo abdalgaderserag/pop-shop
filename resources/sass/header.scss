@@ -6,6 +6,7 @@
   background-color: $white;
   font-size: 2.5vh;
   box-shadow: 0 1px 5px -2px $black;
+  margin: 0 0 42px 0;
   .nav-main {
     width: $main-width;
     height: 54px;
@@ -40,33 +41,6 @@
       }
     }
 
-    .nav-group:first-child {
-      //justify-content: space-between;
-      .search-bar {
-        padding-top: 8px;
-        width: 64%;
-        button {
-          height: 33px;
-          width: 36px;
-          margin: 0 -5px 0 0;
-          //background-color: #1bbdee #ff3008;
-          background-color: $color;
-          color: $white;
-          border: unset;
-          cursor: pointer;
-        }
-        button:hover {
-          box-shadow: 0 0 8px -1px #b6b0b0;
-        }
-        input {
-          width: 84%;
-          font-size: 2vh;
-          padding: 4px 8px;
-          border: 1px solid $black;
-          border-left-width: 0;
-        }
-      }
-    }
     .nav-group:last-child {
       justify-content: flex-end;
     }

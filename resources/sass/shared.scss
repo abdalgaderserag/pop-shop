@@ -31,3 +31,33 @@ body {
   flex-direction: row;
   justify-content: flex-start;
 }
+
+.container {
+  width: $main-width + 10%;
+  margin: 0 0 0 (($full - ($main-width + 10%))/2);
+  .search-bar {
+    padding-top: 8px;
+    width: 50%;
+    margin: 0 0 42px 25%;
+    button {
+      height: 33px;
+      width: 9%;
+      margin: 0 -3px 0 0;
+      //background-color: #1bbdee #ff3008;
+      background-color: $color;
+      color: $white;
+      border: unset;
+      cursor: pointer;
+    }
+    button:hover {
+      box-shadow: 0 0 8px -1px #b6b0b0;
+    }
+    input {
+      width: 90%;
+      font-size: 2vh;
+      padding: 4px 8px;
+      border: 1px solid #c5c5c5;
+      border-left-width: 0;
+    }
+  }
+}

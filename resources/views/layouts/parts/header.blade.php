@@ -6,15 +6,6 @@
             <div class="nav-item nav-title">
                 Pop Shop
             </div>
-            {{--<div class="nav-item search-bar">--}}
-            {{--<button>S</button>--}}
-            {{--<input type="search" placeholder="Search Item">--}}
-            {{--</div>--}}
-            {{--<div class="nav-item">
-                <a href="/marketplace" class="link-clear">
-                    Market Place
-                </a>
-            </div>--}}
             <div class="nav-item">
                 |
             </div>
