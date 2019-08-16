@@ -5,18 +5,25 @@ body {
   margin: 0;
   font-family: $font-family-base, $font-family-2, $font-family-3;
   font-size: $font-size-base;
-  color: $black;
+  color: $lightGray;
+  background-color: $lightGray;
 }
 
 .card {
   border: 1px solid $black;
   margin: 4px 0;
   background-color: $white;
+  width: $full;
 }
 
 .link-clear {
-  color: $color;
+  color: unset;
   text-decoration: unset;
+  transition: color, 200ms;
+}
+
+.link-clear:hover {
+  color: $color;
 }
 
 .flex-box {

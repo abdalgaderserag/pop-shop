@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
-    "/shared/css/shared.css": "/shared/css/shared.css",
+    "/css/shared/shared.css": "/css/shared/shared.css",
+    "/css/parts/header.css": "/css/parts/header.css",
     "/css/items.css": "/css/items.css"
 }
