@@ -106,12 +106,199 @@
                 </div>
             </div>
 
+
+            <div class="item-card flex-box">
+                <!-- card Image -->
+                <img src="/test/mapbox.jpg" class="item-image">
+
+                <!-- card Body -->
+                <div class="item-body">
+                    <div class="flex-box item-text">
+                        <div style="width: 50%">
+                            <span>Laptop </span>
+                            <span>- $500.00</span>
+                        </div>
+                    </div>
+
+                    <div class="item-text">
+                            <span>
+                                Location :
+                            </span>
+                        <span>8028 Rutherford Fords Suite</span>
+                    </div>
+
+                    <div class="item-text">
+                            <span>
+                                Category :
+                            </span>
+                        <span>
+                                Electronic / Laptops
+                            </span>
+                    </div>
+
+                    <div class="item-text">only <span>5</span> in stock</div>
+
+                    <div class="item-text"><span>By</span> <a href="/profile/gafora" class="link-clear">Gadora</a> at
+                        2015-6-12
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card flex-box">
+                <!-- card Image -->
+                <img src="/test/mapbox.jpg" class="item-image">
+
+                <!-- card Body -->
+                <div class="item-body">
+                    <div class="flex-box item-text">
+                        <div style="width: 50%">
+                            <span>Laptop </span>
+                            <span>- $500.00</span>
+                        </div>
+                    </div>
+
+                    <div class="item-text">
+                            <span>
+                                Location :
+                            </span>
+                        <span>8028 Rutherford Fords Suite</span>
+                    </div>
+
+                    <div class="item-text">
+                            <span>
+                                Category :
+                            </span>
+                        <span>
+                                Electronic / Laptops
+                            </span>
+                    </div>
+
+                    <div class="item-text">only <span>5</span> in stock</div>
+
+                    <div class="item-text"><span>By</span> <a href="/profile/gafora" class="link-clear">Gadora</a> at
+                        2015-6-12
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card flex-box">
+                <!-- card Image -->
+                <img src="/test/mapbox.jpg" class="item-image">
+
+                <!-- card Body -->
+                <div class="item-body">
+                    <div class="flex-box item-text">
+                        <div style="width: 50%">
+                            <span>Laptop </span>
+                            <span>- $500.00</span>
+                        </div>
+                    </div>
+
+                    <div class="item-text">
+                            <span>
+                                Location :
+                            </span>
+                        <span>8028 Rutherford Fords Suite</span>
+                    </div>
+
+                    <div class="item-text">
+                            <span>
+                                Category :
+                            </span>
+                        <span>
+                                Electronic / Laptops
+                            </span>
+                    </div>
+
+                    <div class="item-text">only <span>5</span> in stock</div>
+
+                    <div class="item-text"><span>By</span> <a href="/profile/gafora" class="link-clear">Gadora</a> at
+                        2015-6-12
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card flex-box">
+                <!-- card Image -->
+                <img src="/test/mapbox.jpg" class="item-image">
+
+                <!-- card Body -->
+                <div class="item-body">
+                    <div class="flex-box item-text">
+                        <div style="width: 50%">
+                            <span>Laptop </span>
+                            <span>- $500.00</span>
+                        </div>
+                    </div>
+
+                    <div class="item-text">
+                            <span>
+                                Location :
+                            </span>
+                        <span>8028 Rutherford Fords Suite</span>
+                    </div>
+
+                    <div class="item-text">
+                            <span>
+                                Category :
+                            </span>
+                        <span>
+                                Electronic / Laptops
+                            </span>
+                    </div>
+
+                    <div class="item-text">only <span>5</span> in stock</div>
+
+                    <div class="item-text"><span>By</span> <a href="/profile/gafora" class="link-clear">Gadora</a> at
+                        2015-6-12
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card flex-box">
+                <!-- card Image -->
+                <img src="/test/mapbox.jpg" class="item-image">
+
+                <!-- card Body -->
+                <div class="item-body">
+                    <div class="flex-box item-text">
+                        <div style="width: 50%">
+                            <span>Laptop </span>
+                            <span>- $500.00</span>
+                        </div>
+                    </div>
+
+                    <div class="item-text">
+                            <span>
+                                Location :
+                            </span>
+                        <span>8028 Rutherford Fords Suite</span>
+                    </div>
+
+                    <div class="item-text">
+                            <span>
+                                Category :
+                            </span>
+                        <span>
+                                Electronic / Laptops
+                            </span>
+                    </div>
+
+                    <div class="item-text">only <span>5</span> in stock</div>
+
+                    <div class="item-text"><span>By</span> <a href="/profile/gafora" class="link-clear">Gadora</a> at
+                        2015-6-12
+                    </div>
+                </div>
+            </div>
+
+
             <div class="card-footer">
 
             </div>
         </div>
 
-        <div style="width: 20%;">
+        <div class="right-section" style="width: 20%;">
             <div style="margin-left: 12%">
                 <div class="flex-box mark-title">
                     <div></div>
@@ -119,9 +306,12 @@
                 </div>
                 <div style="margin-top: 8px">
                     @foreach(config('pop.category') as $type)
-                        <a href="?{{ $type }}" class="link-clear">{{ $type }}</a><span>,</span>
+                        <a href="dashboard?{{ $type }}" class="link-clear">{{ $type }}</a><span>,</span>
                     @endforeach
                 </div>
+                {{--<div id="search"--}}
+                     {{--style="display:none;background-color: #fd3408;border: unset;border-radius: 50%;height: 36px;width: 36px;">--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>
@@ -131,6 +321,13 @@
         image.style.height = image.offsetWidth + 'px';
         let checks = [false, false, false];
 
+        document.onscroll = function (e) {
+            let right = document.getElementsByClassName('right-section')[0];
+            let left = document.getElementsByClassName('left-section')[0];
+            right.style.paddingTop = window.scrollY + 'px';
+            left.style.paddingTop = window.scrollY + 'px';
+        };
+
         function check(e, num) {
             let check = e.target.children[0];
 
@@ -139,7 +336,7 @@
             else
                 checks[num] = true;
 
-            if (num === 2) {
+            if (num == 2) {
                 if (checks[2])
                     document.getElementsByClassName('input-text')[3].style.display = 'none';
                 else

@@ -9,16 +9,23 @@
             <div class="nav-item">
                 |
             </div>
-            <div class="nav-item">
-                <a class="link-clear nav-link" href="/profile">
+            {{--<div class="nav-item">
+                <a class="link-clear nav-link" href="/dashboard">
                     Dashboard
                 </a>
             </div>
             <div class="nav-item">
-                <a class="link-clear nav-link" href="/profile">
+                <a class="link-clear nav-link" href="/marketplace">
                     Marketplace
                 </a>
-            </div>
+            </div>--}}
+            @foreach(config('pop.category') as $category)
+                <div class="nav-item">
+                    <a class="link-clear nav-link" href="dashboard?{{ $category }}">
+                        {{ $category }}
+                    </a>
+                </div>
+            @endforeach
         </div>
 
         {{--right side of the nav bar hold avatar and notification icon--}}
