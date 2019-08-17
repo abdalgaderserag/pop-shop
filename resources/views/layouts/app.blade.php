@@ -11,8 +11,8 @@
     <title>@yield('title','Pop Shop')</title>
 
     <link rel="stylesheet" href="/css/shared/shared.css">
-    <link rel="stylesheet" href="/css/items.css">
     <link rel="stylesheet" href="/css/parts/header.css">
+    @yield('styles')
 </head>
 <body>
 

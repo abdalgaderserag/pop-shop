@@ -10,15 +10,16 @@ body {
 }
 
 .card {
-  border: 1px solid $black;
+  border: 1px solid $border;
   margin: 4px 0;
   background-color: $white;
   width: $full;
 }
 
+
 .link-clear {
-  color: unset;
-  text-decoration: unset;
+  color: inherit;
+  text-decoration: none;
   transition: color, 200ms;
 }
 
@@ -50,7 +51,7 @@ body {
       cursor: pointer;
     }
     button:hover {
-      box-shadow: 0 0 8px -1px #b6b0b0;
+      box-shadow: 0 0 8px -1px $border;
     }
     input {
       width: 90%;
