@@ -16,7 +16,7 @@
             <div class="filters">
 
                 <div class="filter">
-                    <div class="check" onclick="check(event)">
+                    <div class="check" onclick="check(event,0)">
                         <div style="visibility: hidden" class="checked"></div>
                     </div>
                     <div class="filter-text">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="filter">
-                    <div class="check" onclick="check(event)">
+                    <div class="check" onclick="check(event,1)">
                         <div style="visibility: hidden" class="checked"></div>
                     </div>
                     <div class="filter-text">
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="filter">
-                    <div class="check" onclick="check(event)">
+                    <div class="check" onclick="check(event,2)">
                         <div style="visibility: hidden" class="checked"></div>
                     </div>
                     <div class="filter-text">
@@ -41,22 +41,22 @@
                 </div>
 
                 <div class="filter">
-                    <input type="text" placeholder="Location" class="input-text">
+                    <input type="text" placeholder="Location" id="location" class="input-text">
                 </div>
 
                 <div class="filter">
                     <div>Cost :</div>
-                    <input type="text" placeholder="min" style="width: 28.25%;float: left" class="input-text">
+                    <input type="text" placeholder="min" id="min" style="width: 28.25%;float: left" class="input-text">
                     <span style="margin: 0 0 0 3px">to</span>
-                    <input type="text" placeholder="max" style="width: 28.25%" class="input-text">
+                    <input type="text" placeholder="max" id="max" style="width: 28.25%" class="input-text">
                 </div>
 
                 <div class="filter">
-                    <input type="text" placeholder="In Stock" class="input-text">
+                    <input type="text" placeholder="In Stock" id="amount" class="input-text">
                 </div>
 
                 <div class="filter">
-                    <input type="submit" value="Reset" class="input-text input-button">
+                    <input type="submit" onclick="resetInput()" value="Reset" class="input-text input-button">
                 </div>
             </div>
         </div>
@@ -106,6 +106,9 @@
                 </div>
             </div>
 
+            <div class="card-footer">
+
+            </div>
         </div>
 
         <div style="width: 20%;"></div>
@@ -114,10 +117,53 @@
     <script>
         let image = document.getElementsByClassName('item-image')[0];
         image.style.height = image.offsetWidth + 'px';
+        let checks = [false, false, false];
 
-        function check(e) {
+        function check(e, num) {
             let check = e.target.children[0];
-            check.style.visibility = check.style.visibility === 'visible' ? 'hidden' : 'visible';
+
+            if (checks[num] === true)
+                checks[num] = false;
+            else
+                checks[num] = true;
+
+            check.style.visibility = checks[num] ? 'visible' : 'hidden';
+        }
+
+        function resetInput() {
+
+            for (let i = 0; i < 3; i++)
+                checks[i] = false;
+
+            let inputs = document.getElementsByClassName('input-text');
+            for (let i = 0; i < inputs.length; i++) {
+                if (i !== inputs.length - 1)
+                    inputs[i].value = '';
+            }
+
+            let checkIn = document.getElementsByClassName('check');
+            for (let i = 0; i < checkIn.length; i++) {
+                checkIn[i].children[0].style.visibility = 'hidden';
+            }
+        }
+
+        function getSearchRequest() {
+            let url = '?';
+            if (document.getElementById('location').value !== '')
+                url = url + 'location=' + document.getElementById('location').value;
+            if (document.getElementById('min').value !== '')
+                url = url + '&min=' + document.getElementById('min').value;
+            if (document.getElementById('max').value !== '')
+                url = url + '&max=' + document.getElementById('max').value;
+            if (document.getElementById('amount').value !== '')
+                url = url + '&amount=' + document.getElementById('amount').value;
+            if (checks[0] === true)
+                url = url + '&exchangeable=true';
+            if (checks[1] === true)
+                url = url + '&used=true';
+            if (checks[2] === true)
+                url = url + '&unlimited=true';
+            return url === '?' ? '' : url;
         }
     </script>
 @endsection
