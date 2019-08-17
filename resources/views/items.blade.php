@@ -111,7 +111,19 @@
             </div>
         </div>
 
-        <div style="width: 20%;"></div>
+        <div style="width: 20%;">
+            <div style="margin-left: 12%">
+                <div class="flex-box mark-title">
+                    <div></div>
+                    <div>Categories</div>
+                </div>
+                <div style="margin-top: 8px">
+                    @foreach(config('pop.category') as $type)
+                        <a href="?{{ $type }}" class="link-clear">{{ $type }}</a><span>,</span>
+                    @endforeach
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -126,6 +138,13 @@
                 checks[num] = false;
             else
                 checks[num] = true;
+
+            if (num === 2) {
+                if (checks[2])
+                    document.getElementsByClassName('input-text')[3].style.display = 'none';
+                else
+                    document.getElementsByClassName('input-text')[3].style.display = 'block';
+            }
 
             check.style.visibility = checks[num] ? 'visible' : 'hidden';
         }
@@ -145,6 +164,7 @@
             for (let i = 0; i < checkIn.length; i++) {
                 checkIn[i].children[0].style.visibility = 'hidden';
             }
+            document.getElementsByClassName('input-text')[3].style.display = 'block';
         }
 
         function getSearchRequest() {
