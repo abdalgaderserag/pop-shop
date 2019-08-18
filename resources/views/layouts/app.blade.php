@@ -25,6 +25,8 @@
     @yield('content')
 </div>
 
+@include('layouts.parts.footer')
+
 </body>
 </html>
 

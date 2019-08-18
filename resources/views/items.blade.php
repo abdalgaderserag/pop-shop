@@ -71,231 +71,138 @@
             <!-- Single item card -->
             <div class="item-card flex-box">
                 <!-- card Image -->
-                <img src="/test/mapbox.jpg" class="item-image">
+                <div class="item-image" style="background-color: #f5f5f5"></div>
 
                 <!-- card Body -->
                 <div class="item-body">
                     <div class="flex-box item-text">
-                        <div style="width: 50%">
-                            <span>Laptop </span>
-                            <span>- $500.00</span>
+                        <div class="holder" style="width: 50%">
                         </div>
                     </div>
 
-                    <div class="item-text">
-                            <span>
-                                Location :
-                            </span>
-                        <span>8028 Rutherford Fords Suite</span>
+                    <div class="item-text holder">
                     </div>
 
-                    <div class="item-text">
-                            <span>
-                                Category :
-                            </span>
-                        <span>
-                                Electronic / Laptops
-                            </span>
+                    <div class="item-text holder">
                     </div>
 
-                    <div class="item-text">only <span>5</span> in stock</div>
+                    <div class="item-text holder"></div>
 
-                    <div class="item-text"><span>By</span> <a href="/profile/gafora" class="link-clear">Gadora</a> at
-                        2015-6-12
-                    </div>
+                    <div class="item-text holder"></div>
                 </div>
             </div>
-
-
             <div class="item-card flex-box">
                 <!-- card Image -->
-                <img src="/test/mapbox.jpg" class="item-image">
+                <div class="item-image" style="background-color: #f5f5f5"></div>
 
                 <!-- card Body -->
                 <div class="item-body">
                     <div class="flex-box item-text">
-                        <div style="width: 50%">
-                            <span>Laptop </span>
-                            <span>- $500.00</span>
+                        <div class="holder" style="width: 50%">
                         </div>
                     </div>
 
-                    <div class="item-text">
-                            <span>
-                                Location :
-                            </span>
-                        <span>8028 Rutherford Fords Suite</span>
+                    <div class="item-text holder">
                     </div>
 
-                    <div class="item-text">
-                            <span>
-                                Category :
-                            </span>
-                        <span>
-                                Electronic / Laptops
-                            </span>
+                    <div class="item-text holder">
                     </div>
 
-                    <div class="item-text">only <span>5</span> in stock</div>
+                    <div class="item-text holder"></div>
 
-                    <div class="item-text"><span>By</span> <a href="/profile/gafora" class="link-clear">Gadora</a> at
-                        2015-6-12
-                    </div>
+                    <div class="item-text holder"></div>
                 </div>
             </div>
-
             <div class="item-card flex-box">
                 <!-- card Image -->
-                <img src="/test/mapbox.jpg" class="item-image">
+                <div class="item-image" style="background-color: #f5f5f5"></div>
 
                 <!-- card Body -->
                 <div class="item-body">
                     <div class="flex-box item-text">
-                        <div style="width: 50%">
-                            <span>Laptop </span>
-                            <span>- $500.00</span>
+                        <div class="holder" style="width: 50%">
                         </div>
                     </div>
 
-                    <div class="item-text">
-                            <span>
-                                Location :
-                            </span>
-                        <span>8028 Rutherford Fords Suite</span>
+                    <div class="item-text holder">
                     </div>
 
-                    <div class="item-text">
-                            <span>
-                                Category :
-                            </span>
-                        <span>
-                                Electronic / Laptops
-                            </span>
+                    <div class="item-text holder">
                     </div>
 
-                    <div class="item-text">only <span>5</span> in stock</div>
+                    <div class="item-text holder"></div>
 
-                    <div class="item-text"><span>By</span> <a href="/profile/gafora" class="link-clear">Gadora</a> at
-                        2015-6-12
-                    </div>
+                    <div class="item-text holder"></div>
                 </div>
             </div>
-
             <div class="item-card flex-box">
                 <!-- card Image -->
-                <img src="/test/mapbox.jpg" class="item-image">
+                <div class="item-image" style="background-color: #f5f5f5"></div>
 
                 <!-- card Body -->
                 <div class="item-body">
                     <div class="flex-box item-text">
-                        <div style="width: 50%">
-                            <span>Laptop </span>
-                            <span>- $500.00</span>
+                        <div class="holder" style="width: 50%">
                         </div>
                     </div>
 
-                    <div class="item-text">
-                            <span>
-                                Location :
-                            </span>
-                        <span>8028 Rutherford Fords Suite</span>
+                    <div class="item-text holder">
                     </div>
 
-                    <div class="item-text">
-                            <span>
-                                Category :
-                            </span>
-                        <span>
-                                Electronic / Laptops
-                            </span>
+                    <div class="item-text holder">
                     </div>
 
-                    <div class="item-text">only <span>5</span> in stock</div>
+                    <div class="item-text holder"></div>
 
-                    <div class="item-text"><span>By</span> <a href="/profile/gafora" class="link-clear">Gadora</a> at
-                        2015-6-12
-                    </div>
+                    <div class="item-text holder"></div>
                 </div>
             </div>
-
             <div class="item-card flex-box">
                 <!-- card Image -->
-                <img src="/test/mapbox.jpg" class="item-image">
+                <div class="item-image" style="background-color: #f5f5f5"></div>
 
                 <!-- card Body -->
                 <div class="item-body">
                     <div class="flex-box item-text">
-                        <div style="width: 50%">
-                            <span>Laptop </span>
-                            <span>- $500.00</span>
+                        <div class="holder" style="width: 50%">
                         </div>
                     </div>
 
-                    <div class="item-text">
-                            <span>
-                                Location :
-                            </span>
-                        <span>8028 Rutherford Fords Suite</span>
+                    <div class="item-text holder">
                     </div>
 
-                    <div class="item-text">
-                            <span>
-                                Category :
-                            </span>
-                        <span>
-                                Electronic / Laptops
-                            </span>
+                    <div class="item-text holder">
                     </div>
 
-                    <div class="item-text">only <span>5</span> in stock</div>
+                    <div class="item-text holder"></div>
 
-                    <div class="item-text"><span>By</span> <a href="/profile/gafora" class="link-clear">Gadora</a> at
-                        2015-6-12
-                    </div>
+                    <div class="item-text holder"></div>
                 </div>
             </div>
-
             <div class="item-card flex-box">
                 <!-- card Image -->
-                <img src="/test/mapbox.jpg" class="item-image">
+                <div class="item-image" style="background-color: #f5f5f5"></div>
 
                 <!-- card Body -->
                 <div class="item-body">
                     <div class="flex-box item-text">
-                        <div style="width: 50%">
-                            <span>Laptop </span>
-                            <span>- $500.00</span>
+                        <div class="holder" style="width: 50%">
                         </div>
                     </div>
 
-                    <div class="item-text">
-                            <span>
-                                Location :
-                            </span>
-                        <span>8028 Rutherford Fords Suite</span>
+                    <div class="item-text holder">
                     </div>
 
-                    <div class="item-text">
-                            <span>
-                                Category :
-                            </span>
-                        <span>
-                                Electronic / Laptops
-                            </span>
+                    <div class="item-text holder">
                     </div>
 
-                    <div class="item-text">only <span>5</span> in stock</div>
+                    <div class="item-text holder"></div>
 
-                    <div class="item-text"><span>By</span> <a href="/profile/gafora" class="link-clear">Gadora</a> at
-                        2015-6-12
-                    </div>
+                    <div class="item-text holder"></div>
                 </div>
             </div>
 
-
-            <div class="card-footer">
-
-            </div>
+            <div class="card-footer"></div>
         </div>
 
         <div class="right-section" style="width: 20%;">
@@ -310,12 +217,13 @@
                     @endforeach
                 </div>
                 {{--<div id="search"--}}
-                     {{--style="display:none;background-color: #fd3408;border: unset;border-radius: 50%;height: 36px;width: 36px;">--}}
+                {{--style="display:none;background-color: #fd3408;border: unset;border-radius: 50%;height: 36px;width: 36px;">--}}
                 {{--</div>--}}
             </div>
         </div>
     </div>
 
+    <script src="/js/app.js"></script>
     <script>
         let image = document.getElementsByClassName('item-image')[0];
         image.style.height = image.offsetWidth + 'px';
@@ -327,6 +235,32 @@
             right.style.paddingTop = window.scrollY + 'px';
             left.style.paddingTop = window.scrollY + 'px';
         };
+
+        getItems();
+
+        function getItems() {
+            axios.get('/api/item').then(function (response) {
+
+                let items = response.data.items;
+                let item;
+                let ele = '<div class="card-header">Items</div>';
+                for (let i = 0; i < items.length; i++) {
+                    item = items[i];
+                    ele = ele + '<div class="item-card flex-box">' +
+                        '<img src="/test/mapbox.jpg" class="item-image"><div class="item-body">' +
+                        '<div class="flex-box item-text"><div style="width: 50%">' +
+                        '<span>' + item.title + '</span><span>- $' + item.budget + '</span></div></div>' +
+                        '<div class="item-text"><span>Location :</span>' +
+                        '<span>' + item.category.location + '</span></div>' +
+                        '<div class="item-text"><span>Category :</span>' +
+                        '<span>' + item.category.base_type + ' / ' + item.category.seconder_type + '</span></div>' +
+                        '<div class="item-text">only <span>' + item.stock + '</span> in stock</div>' +
+                        '<div class="item-text"><span>By</span> <a href="/profile/' + item.user.id + '" class="link-clear">' + item.user.name + '</a> at ' + item.created_at + '</div></div></div>';
+                }
+                ele = ele + '<div class="card-footer"></div>';
+                document.getElementsByClassName('main-section')[0].innerHTML = ele;
+            });
+        }
 
         function check(e, num) {
             let check = e.target.children[0];
