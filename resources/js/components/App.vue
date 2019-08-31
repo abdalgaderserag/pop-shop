@@ -97,6 +97,7 @@
                 items: [],
 
                 singleItemMode: true,
+                screenLocation: 0,
             }
         },
         mounted() {
