@@ -7,8 +7,10 @@
   .filters {
     padding: 0 0 0 14px;
   }
+
   .filter {
     margin: 8px 0 0 0;
+
     .filter-text {
       padding: 1px 0 0 0;
     }
@@ -17,6 +19,7 @@
 
 .main-section {
   width: 60%;
+
   .card-header {
     width: 92%;
     background-color: #f9f9f9;
@@ -46,24 +49,52 @@
     border: 1px solid $border;
     border-bottom-width: 0;
     cursor: pointer;
-    .item-image {
+
+    .item-left {
       width: 30%;
-      height: 146px;
-      object-fit: cover;
+      .item-image {
+        height: 146px;
+        width: 100%;
+        object-fit: cover;
+      }
     }
+
     .item-body {
       width: 68%;
       padding-left: 2%;
+
       .item-text {
         span:first-child {
           font-family: $font-family-base-2;
           font-size: 2.7vh;
         }
       }
+
+      .item-tag {
+        //padding: 0 8px 0 8px;
+        //height: 20px;
+        //width: max-content;
+        //border: 1px solid $color;
+        //border-radius: 12px;
+        //margin-right: 12px;
+        //float: left;
+
+        height: 20px;
+        width: max-content;
+        border-radius: 12px;
+        margin: 0 0 0 6px;
+        float: left;
+        background-color: $color;
+        padding: 3px 9px 1px 8px;
+        color: $white;
+        font-weight: 500;
+      }
+
       .item-text:first-child {
         span {
           font-size: 3.5vh;
         }
+
         span:first-child {
           text-decoration: underline;
         }

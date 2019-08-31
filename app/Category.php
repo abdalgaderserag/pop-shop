@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+
+    protected $casts = [
+        'exchangeable' => 'boolean',
+        'used' => 'boolean'
+    ];
+
     /**
      * Set a given attribute on the base type.
      *
