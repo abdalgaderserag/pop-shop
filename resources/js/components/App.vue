@@ -1,6 +1,7 @@
 <template>
     <div class="flex-box" style="justify-content: center">
-        <filters></filters>
+
+        <filters v-show="singleItemMode"></filters>
 
         <div class="main-section">
 
@@ -33,7 +34,8 @@
                 </div>
             </div>
 
-            <div v-if="isLoaded" v-for="item in items" class="item-card flex-box">
+            <div v-if="isLoaded" v-for="(item, index) in items" @click="displayItem(index)"
+                 class="item-card flex-box">
                 <div class="item-left">
                     <img src="/test/mapbox.jpg" class="item-image">
                     <div>
@@ -79,7 +81,7 @@
             <div class="card-footer"></div>
         </div>
 
-        <categories></categories>
+        <categories v-show="singleItemMode"></categories>
 
     </div>
 </template>
@@ -93,10 +95,17 @@
                 isLoaded: false,
 
                 items: [],
+
+                singleItemMode: true,
             }
         },
         mounted() {
             this.getItems();
+            window.onkeydown = (e) => {
+                if (e.key == 'Escape') {
+                    this.normalMode();
+                }
+            }
         },
         methods: {
             getItems: function () {
@@ -121,7 +130,35 @@
                         return hour + ' hour ago';
                 } else
                     return time.slice(0, time.length - 9);
+            },
+            displayItem: function (index = '') {
+                if (this.singleItemMode) {
+                    let item = this.items[index];
+                    document.getElementsByClassName('main-section')[0].style.width = '100%';
+                    this.singleItemMode = false;
+                    let element = document.getElementsByClassName('item-card')[index];
+                    this.hideOtherItems(element);
+                }
+            },
+            hideOtherItems: function (item) {
+                let items = document.getElementsByClassName('item-card');
+                for (let i = 0; i < items.length; i++) {
+                    items[i].style.display = 'none';
+                }
+                item.style.display = '';
+            },
+            normalMode: function () {
+                this.displayItem();
+                document.getElementsByClassName('main-section')[0].style.width = '60%';
+                setTimeout(() => {
+                    this.singleItemMode = true;
+                    let items = document.getElementsByClassName('item-card');
+                    for (let i = 0; i < items.length; i++) {
+                        items[i].style.display = '';
+                    }
+                }, 500);
             }
+
         }
     }
 </script>

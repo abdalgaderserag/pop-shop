@@ -1,6 +1,10 @@
 // Variables
 @import "variables";
 
+body {
+  overflow: scroll;
+}
+
 .left-section {
   width: 20%;
   //padding: 32px 0 0 0;
@@ -19,6 +23,7 @@
 
 .main-section {
   width: 60%;
+  transition: width, 500ms;
 
   .card-header {
     width: 92%;
@@ -52,6 +57,7 @@
 
     .item-left {
       width: 30%;
+
       .item-image {
         height: 146px;
         width: 100%;

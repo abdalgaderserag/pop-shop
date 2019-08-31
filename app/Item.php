@@ -11,6 +11,10 @@ class Item extends Model
         'cents'
     ];
 
+    protected $casts = [
+        'images' => 'array',
+    ];
+
 
     public function getStockAttribute($value)
     {
@@ -28,7 +32,7 @@ class Item extends Model
 
 //    turn the array to string and store it in database
 //    used to edit the image store shape
-    public function setImagesAttribute($value)
+    /*public function setImagesAttribute($value)
     {
         if (is_array($value)) {
             $images = '';
@@ -40,7 +44,7 @@ class Item extends Model
             $this->attributes['images'] = $value;
         else
             $this->attributes['images'] = null;
-    }
+    }*/
 
 
     public function user()
