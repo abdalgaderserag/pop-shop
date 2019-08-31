@@ -12,20 +12,27 @@
 
     <link rel="stylesheet" href="/css/shared/shared.css">
     <link rel="stylesheet" href="/css/parts/header.css">
+    <script src="/js/app.js"></script>
     @yield('styles')
 </head>
 <body>
-
-@include('layouts.parts.header')
-<div class="container">
-    <div class="nav-item search-bar">
-        <button>S</button>
-        <input type="search" placeholder="Search Item">
+<div id="app">
+    @include('layouts.parts.header')
+    <div class="container">
+        <div class="nav-item search-bar">
+            <button>S</button>
+            <input type="search" placeholder="Search Item">
+        </div>
+        @yield('content')
     </div>
-    @yield('content')
 </div>
 
 @include('layouts.parts.footer')
+<script>
+    let app = new Vue({
+        el: '#app',
+    });
+</script>
 
 </body>
 </html>

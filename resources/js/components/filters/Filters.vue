@@ -1,0 +1,112 @@
+<template>
+    <div class="left-section">
+        <div class="flex-box mark-title">
+            <div></div>
+            <div>Filters.</div>
+        </div>
+
+        <div class="filters">
+
+
+            <div v-for="(check,index) in checks" class="filter">
+                <div class="check" @click="checkit(index)">
+                    <div v-show="check.status" class="checked"></div>
+                </div>
+                <div class="filter-text" @click="checkit(index)" style="cursor: pointer">
+                    {{ check.name }}
+                </div>
+            </div>
+
+
+            <div class="filter">
+                <input @input="getUrl" type="text" v-model="locations" placeholder="Location" id="location"
+                       class="input-text">
+            </div>
+
+            <div class="filter">
+                <div>Cost :</div>
+                <input @input="getUrl" type="text" v-model="min" placeholder="min" id="min"
+                       style="width: 28.25%;float: left"
+                       class="input-text">
+                <span style="margin: 0 0 0 3px">to</span>
+                <input @input="getUrl" type="text" v-model="max" placeholder="max" id="max" style="width: 28.25%"
+                       class="input-text">
+            </div>
+
+            <div v-if="!checks[2].status" class="filter">
+                <input @input="getUrl" type="text" v-model="stock" placeholder="In Stock" id="amount"
+                       class="input-text">
+            </div>
+
+            <div class="filter">
+                <input type="submit" @click="resetInput()" value="Reset" class="input-text input-button">
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "Filters",
+        data() {
+            return {
+                checks: [
+                    {
+                        name: 'Exchangeable',
+                        status: false,
+                    },
+                    {
+                        name: 'Used',
+                        status: false,
+                    },
+                    {
+                        name: 'Unlimited',
+                        status: false,
+                    },
+                ],
+                locations: '',
+                min: '',
+                max: '',
+                stock: '',
+
+                url: '',
+            }
+        },
+        methods: {
+            resetInput: function () {
+                this.locations = '';
+                this.min = '';
+                this.max = '';
+                this.stock = '';
+                for (let i = 0; i < this.checks.length; i++)
+                    this.checks[i].status = false;
+            },
+            checkit: function (index) {
+                this.checks[index].status = !this.checks[index].status;
+                this.getUrl();
+            },
+            getUrl: function () {
+                let url = '?';
+                if (this.locations != '')
+                    url = url + 'location=' + this.locations + '&';
+                if (this.min != '')
+                    url = url + 'min=' + this.min + '&';
+                if (this.max != '')
+                    url = url + 'max=' + this.max + '&';
+                if (this.stock != '')
+                    url = url + 'amount=' + this.stock + '&';
+
+                for (let i = 0; i < this.checks.length; i++)
+                    if (this.checks[i].status)
+                        url = url + this.checks[i].name + '=true&';
+
+                url = url.slice(0, url.length - 1);
+                this.url = url == '?' ? '' : url;
+            },
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>
