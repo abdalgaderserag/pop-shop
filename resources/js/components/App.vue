@@ -116,6 +116,8 @@
                 });
             },
             parseTime: function (time) {
+                return time.slice(0, time.length - 9);
+                //TODO : fix this, it should return the right string
                 let par = (new Date('' + time).getTime() / 1000) - (new Date().getTime() / 1000);
                 if (par < 60)
                     return 'just now!';
@@ -137,6 +139,7 @@
                     let item = this.items[index];
                     document.getElementsByClassName('main-section')[0].style.width = '100%';
                     this.singleItemMode = false;
+                    this.screenLocation = window.scrollY;
                     let element = document.getElementsByClassName('item-card')[index];
                     this.hideOtherItems(element);
                 }
@@ -157,6 +160,7 @@
                     for (let i = 0; i < items.length; i++) {
                         items[i].style.display = '';
                     }
+                    window.scrollTo(0,this.screenLocation);
                 }, 500);
             }
 
