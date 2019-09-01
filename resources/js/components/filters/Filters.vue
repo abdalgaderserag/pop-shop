@@ -100,8 +100,9 @@
                     if (this.checks[i].status)
                         url = url + this.checks[i].name + '=true&';
 
-                url = url.slice(0, url.length - 1);
-                this.url = url == '?' ? '' : url;
+                url = '#' + url.slice(0, url.length - 1);
+                this.url = url == '?' ? '' : +url;
+                window.location.href = window.location.origin + url;
             },
         }
     }

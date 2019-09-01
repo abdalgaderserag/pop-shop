@@ -6,8 +6,11 @@
         <div class="main-section">
 
             <!-- header of the list -->
-            <div class="card-header">
-                Items
+            <div class="card-header flex-box">
+                <div v-show="!singleItemMode" style="margin-right:20px;cursor:pointer;"
+                     @click="normalMode"><
+                </div>
+                <div>Items</div>
             </div>
 
             <!-- the items holders -->
@@ -37,7 +40,12 @@
             <div v-if="isLoaded" v-for="(item, index) in items" @click="displayItem(index)"
                  class="item-card flex-box">
                 <div class="item-left">
-                    <img src="/test/mapbox.jpg" class="item-image">
+                    <img :src="item.images[activeImage]" class="item-image">
+                    <div v-if="!singleItemMode" class="flex-box" style="width: 100%;">
+                        <div style="width: 8%;height: 64px"><</div>
+                        <img v-for="(image,index) in item.images" v-if="index != 2" style="width: 28%;height: 64px" :src="image" alt="">
+                        <div style="width: 8%;height: 64px">></div>
+                    </div>
                     <div>
                         {{ parseTime(item.created_at) }}
                         <!--{{ item.created_at }}-->
@@ -49,6 +57,12 @@
                             <div style="font-size: 3.5vh">{{ item.title }}</div>
                             <span> - {{ '$' + item.budget }}</span>
                         </div>
+                    </div>
+                    <div v-if="!singleItemMode" class="item-text">
+                        <button class="input-button" style="width: 26%;border-width:0;margin-bottom: 16px;">Buy</button>
+                    </div>
+                    <div v-if="!singleItemMode" class="item-text">
+                        <div style="font-size: 2.4vh">{{ item.details }}</div>
                     </div>
                     <div class="item-text"><span>Location :</span>
                         <span>{{ item.category.location }}</span></div>
@@ -98,6 +112,7 @@
 
                 singleItemMode: true,
                 screenLocation: 0,
+                activeImage: 0,
             }
         },
         mounted() {
@@ -108,6 +123,7 @@
                 }
             }
         },
+
         methods: {
             getItems: function () {
                 axios.get('/api/item').then((response) => {
@@ -137,7 +153,12 @@
             displayItem: function (index = '') {
                 if (this.singleItemMode) {
                     let item = this.items[index];
-                    document.getElementsByClassName('main-section')[0].style.width = '100%';
+                    let main = document.getElementsByClassName('main-section')[0];
+                    if (main.offsetWidth + 100 > window.window.innerWidth) {
+                        window.location.href += 'item/' + item.id;
+                        return;
+                    }
+                    main.style.width = '100%';
                     this.singleItemMode = false;
                     this.screenLocation = window.scrollY;
                     let element = document.getElementsByClassName('item-card')[index];
@@ -150,6 +171,10 @@
                     items[i].style.display = 'none';
                 }
                 item.style.display = '';
+                let left = item.getElementsByClassName('item-left')[0];
+                let body = item.getElementsByClassName('item-body')[0];
+                left.style.width = '30%';
+                body.style.width = '68%';
             },
             normalMode: function () {
                 this.displayItem();
@@ -160,7 +185,7 @@
                     for (let i = 0; i < items.length; i++) {
                         items[i].style.display = '';
                     }
-                    window.scrollTo(0,this.screenLocation);
+                    window.scrollTo(0, this.screenLocation);
                 }, 500);
             }
 
