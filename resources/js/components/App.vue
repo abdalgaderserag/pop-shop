@@ -40,11 +40,12 @@
             <div v-if="isLoaded" v-for="(item, index) in items" @click="displayItem(index)"
                  class="item-card flex-box">
                 <div class="item-left">
-                    <img :src="item.images[activeImage]" class="item-image">
+                    <img :src="reConImage(activeImage)" class="item-image main-image">
                     <div v-if="!singleItemMode" class="flex-box" style="width: 100%;">
-                        <div style="width: 8%;height: 64px"><</div>
-                        <img v-for="(image,index) in item.images" v-if="index != 2" style="width: 28%;height: 64px" :src="image" alt="">
-                        <div style="width: 8%;height: 64px">></div>
+                        <div style="width: 8%;height: 64px" @click="activeImage++"><</div>
+                        <img v-for="(image,index) in item.images" v-if="index + activeImage < 3 + activeImage"
+                             style="width: 28%;height: 64px" :src="reConImage(index)" alt="">
+                        <div style="width: 8%;height: 64px" @click="activeImage++">></div>
                     </div>
                     <div>
                         {{ parseTime(item.created_at) }}
@@ -109,6 +110,7 @@
                 isLoaded: false,
 
                 items: [],
+                activeItem: 0,
 
                 singleItemMode: true,
                 screenLocation: 0,
@@ -118,7 +120,7 @@
         mounted() {
             this.getItems();
             window.onkeydown = (e) => {
-                if (e.key == 'Escape') {
+                if (e.key == 'Escape' && !this.singleItemMode) {
                     this.normalMode();
                 }
             }
@@ -159,6 +161,7 @@
                         return;
                     }
                     main.style.width = '100%';
+                    this.activeItem = index;
                     this.singleItemMode = false;
                     this.screenLocation = window.scrollY;
                     let element = document.getElementsByClassName('item-card')[index];
@@ -178,17 +181,24 @@
             },
             normalMode: function () {
                 this.displayItem();
+                this.activeImage = 0;
                 document.getElementsByClassName('main-section')[0].style.width = '60%';
+                this.singleItemMode = true;
                 setTimeout(() => {
-                    this.singleItemMode = true;
+                    // this.singleItemMode = true;
                     let items = document.getElementsByClassName('item-card');
                     for (let i = 0; i < items.length; i++) {
                         items[i].style.display = '';
                     }
                     window.scrollTo(0, this.screenLocation);
                 }, 500);
+            },
+            reConImage: function (index) {
+                while (index > 3) {
+                    index -= 3;
+                }
+                return this.items[this.activeItem].images[index];
             }
-
         }
     }
 </script>
