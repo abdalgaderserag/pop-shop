@@ -43,14 +43,13 @@
                 <div class="item-left">
                     <img :src="reConImage(activeImage)" class="item-image main-image">
                     <div v-if="!singleItemMode" class="flex-box" style="width: 100%;">
-                        <div style="width: 8%;height: 64px" @click="activeImage++"><</div>
+                        <div style="width: 8%;height: 64px" @click="changeImage(true)"><</div>
                         <img v-for="(image,index) in item.images" v-if="index + activeImage < 3 + activeImage"
                              style="width: 28%;height: 64px" :src="reConImage(index)" alt="">
-                        <div style="width: 8%;height: 64px" @click="activeImage++">></div>
+                        <div style="width: 8%;height: 64px" @click="changeImage(false)">></div>
                     </div>
                     <div>
                         {{ parseTime(item.created_at) }}
-                        <!--{{ item.created_at }}-->
                     </div>
                 </div>
 
@@ -59,7 +58,9 @@
                         <div style="width: 100%;">
                             <div class="flex-box" style="font-size: 3.5vh;justify-content: space-between">
                                 <div>{{ item.title }}</div>
-                                <div v-if="!singleItemMode" style="width: 24px" v-html="hart"></div>
+                                <div v-if="!singleItemMode" class="flex-box" style="width: 24px;flex-direction: column;"
+                                     v-html="hart + '<div style=\'font-size:2.2vh;text-align: center;\'>' + item.likes_count+ '</div>'">
+                                </div>
                             </div>
                             <span> - {{ '$' + item.budget }}</span>
                         </div>
@@ -141,7 +142,7 @@
 
         methods: {
             getItems: function () {
-                axios.get('/api/item').then((response) => {
+                axios.get('/api/item' + window.location.search).then((response) => {
                     this.items = response.data.items;
                     this.isLoaded = true;
                 });
@@ -211,6 +212,12 @@
                     index -= 3;
                 }
                 return this.items[this.activeItem].images[index];
+            },
+            changeImage: function (type) {
+                this.activeImage += type ? 1 : -1;
+                if (this.activeImage >= this.items[this.activeItem].images.length || this.activeImage < 0) {
+                    this.activeImage += type ? -1 : 1;
+                }
             }
         }
     }

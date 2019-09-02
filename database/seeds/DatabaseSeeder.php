@@ -12,6 +12,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         factory(App\User::class, 5)->create()->each(function ($u) {
+            $bio = factory(App\Bio::class)->make();
+            $bio->user_id = $u->id;
+
             // Items Factory
             factory(App\Item::class, 5)->create(['user_id' => $u->id])->each(function ($item) {
                 $category = factory(App\Category::class)->make();
