@@ -72,6 +72,9 @@
                 url: '',
             }
         },
+        mounted() {
+            this.parseUrl();
+        },
         methods: {
             resetInput: function () {
                 this.locations = '';
@@ -84,6 +87,66 @@
             checkit: function (index) {
                 this.checks[index].status = !this.checks[index].status;
                 this.getUrl();
+            },
+            parseUrl: function () {
+                // let url = window.location.hash;
+                // let filtersArray = url.split('=');
+                // let finalArray = [];
+                // filtersArray[0] = filtersArray[0].slice(1, filtersArray[0].length);
+                // if (filtersArray[0][1] == '?')
+                //     filtersArray[0] = filtersArray[0].slice(1, filtersArray[0].length);
+                //
+                // finalArray[0] = filtersArray[0];
+                //
+                // let holder;
+                // for (let i = 1; i < filtersArray.length; i++) {
+                //     holder = filtersArray[i].split('&');
+                //     finalArray[finalArray.length] = holder[0];
+                //     finalArray[finalArray.length] = holder[1];
+                // }
+                //
+                // finalArray.pop();
+                // console.log(finalArray);
+                let hash = window.location.hash;
+                let filters = hash.split('=');
+                if (filters.length != 1) {
+                    filters[0] = filters[0].slice(2, filters[0].length);
+                    let counts = filters.length;
+                    if (filters[0] == 'location')
+                        this.locations = filters[1].split('&')[0];
+                    console.log(filters);
+                    for (let i = 1; i < counts; i++) {
+                        let hood = filters[i].split('&')[1];
+                        if (hood == 'min')
+                            this.min = filters[i + 1].split('&')[0];
+                        else if (hood == 'max')
+                            this.max = filters[i + 1].split('&')[0];
+                        else if (hood == 'amount')
+                            this.stock = filters[i + 1].split('&')[0];
+                        else if (hood == 'Unlimited')
+                            this.checks[2].status = true;
+                        else if (hood == 'Exchangeable')
+                            this.checks[0].status = true;
+                        else if (hood == 'Used')
+                            this.checks[1].status = true;
+                    }
+                }
+                /* for (let i = 0; i < finalArray.length; i + 2) {
+                if (finalArray[i] == 'location')
+                    this.locations = finalArray[i + 1];
+                else if (finalArray[i] == 'min')
+                    this.min = finalArray[i + 1];
+                else if (finalArray[i] == 'max')
+                    this.max = finalArray[i + 1];
+                else if (finalArray[i] == 'amount')
+                    this.stock = finalArray[i + 1];
+                else if (finalArray[i] == 'Exchangeable')
+                    this.checks[0].status = true;
+                else if (finalArray[i] == 'Used')
+                    this.checks[1].status = true;
+                else if (finalArray[i] == 'Unlimited')
+                    this.checks[2].status = true;
+            }*/
             },
             getUrl: function () {
                 let url = '?';
