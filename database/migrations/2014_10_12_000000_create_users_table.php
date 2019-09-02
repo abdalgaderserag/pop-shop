@@ -17,11 +17,7 @@ class CreateUsersTable extends Migration
 //            $table->bigIncrements('id');
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->string('avatar')->default(config('pop.def-avatar'));
             $table->string('email')->unique();
-            $table->text('about')->nullable();
-            $table->string('location')->nullable();
-            $table->boolean('payment_verified')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
