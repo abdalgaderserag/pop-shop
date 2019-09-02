@@ -39,6 +39,7 @@
 
             <div v-if="isLoaded" v-for="(item, index) in items" @click="displayItem(index)"
                  class="item-card flex-box">
+
                 <div class="item-left">
                     <img :src="reConImage(activeImage)" class="item-image main-image">
                     <div v-if="!singleItemMode" class="flex-box" style="width: 100%;">
@@ -52,10 +53,14 @@
                         <!--{{ item.created_at }}-->
                     </div>
                 </div>
+
                 <div class="item-body">
                     <div class="flex-box item-text">
-                        <div>
-                            <div style="font-size: 3.5vh">{{ item.title }}</div>
+                        <div style="width: 100%;">
+                            <div class="flex-box" style="font-size: 3.5vh;justify-content: space-between">
+                                <div>{{ item.title }}</div>
+                                <div v-if="!singleItemMode" style="width: 24px" v-html="hart"></div>
+                            </div>
                             <span> - {{ '$' + item.budget }}</span>
                         </div>
                     </div>
@@ -115,6 +120,8 @@
                 singleItemMode: true,
                 screenLocation: 0,
                 activeImage: 0,
+
+                hart: '<3',
             }
         },
         mounted() {
@@ -123,7 +130,13 @@
                 if (e.key == 'Escape' && !this.singleItemMode) {
                     this.normalMode();
                 }
-            }
+            };
+            axios.get('/site/hart.svg').then((response) => {
+                this.hart = response.data;
+                for (let i = 0; i < this.items.length; i++) {
+                    this.items[i].hart = this.hart;
+                }
+            });
         },
 
         methods: {
