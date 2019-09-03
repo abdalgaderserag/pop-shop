@@ -13,12 +13,8 @@
                 <div>Items</div>
             </div>
 
-            <!-- the items holders -->
             <div v-if="!isLoaded" v-for="holder in holdersNumber" class="item-card flex-box">
-                <!-- card Image -->
-                <div class="item-image" style="background-color: #f5f5f5"></div>
-
-                <!-- card Body -->
+                <div class="holder" style="width: 30%;height: 152px"></div>
                 <div class="item-body">
                     <div class="flex-box item-text">
                         <div class="holder" style="width: 50%">
@@ -64,14 +60,16 @@
                                 <!--v-html="hart + '<div style=\'font-size:2.2vh;text-align: center;\'>' + item.likes_count+ '</div>'">-->
                                 <div v-if="!singleItemMode" class="flex-box"
                                      style="width: 24px;flex-direction: row-reverse"
-                                     v-html="'<div style=\'width: 24px\'>'+hart+'</div><div style=\'min-width: 24px;height: 23px;background: #fff;border-radius: 4px;margin-right:8px;box-shadow: 0 1px 4px #cbc8c8;padding:2px 3px 0 3px;font-size: 2vh;text-align: center\'>2M</div>'">
+                                     v-html="'<div style=\'width: 24px\'>'+hart+'</div><div class=\'box-shadowed\'>2M</div>'">
                                 </div>
                             </div>
                             <span> - {{ '$' + item.budget }}</span>
                         </div>
                     </div>
                     <div v-if="!singleItemMode" class="item-text">
-                        <button class="input-button" style="width: 26%;border-width:0;margin-bottom: 16px;">Buy</button>
+                        <button class="input-button" style="width: 26%;border-width:0;margin-bottom: 16px;"
+                                @click="authorize()">Buy
+                        </button>
                     </div>
                     <div v-if="!singleItemMode" class="item-text">
                         <div style="font-size: 2.4vh">{{ item.details }}</div>
@@ -81,7 +79,9 @@
                     <div class="item-text"><span>Category :</span>
                         <span> {{item.category.base_type}} / {{ item.category.seconder_type }}</span></div>
 
-                    <div class="item-text"><span>By</span> <a :href="'/profile/' + item.user.id" class="link-clear">
+                    <div class="item-text"><span>By</span> <a :href="'/profile/' + item.user.id"
+                                                              style="background: #fff;border-radius: 16px;box-shadow: 0 1px 4px #cbc8c8;padding: 8px 8px 0 8px;margin: 0 0 0 10px;"
+                                                              class="link-clear">
                         {{item.user.name }}</a>
                     </div>
 
@@ -105,6 +105,10 @@
 
 
             <div class="card-footer"></div>
+
+            <div class="flex-box pagination">
+                <a v-for="page in pages" :href="'?page='+page" class="link-clear"><div class="box-shadowed">{{ page }}</div></a>
+            </div>
         </div>
 
         <categories v-show="singleItemMode"></categories>
@@ -128,6 +132,7 @@
                 activeImage: 0,
 
                 hart: '<3',
+                pages: 0,
             }
         },
         mounted() {
@@ -155,6 +160,11 @@
                 axios.get('/api/item' + window.location.search).then((response) => {
                     this.items = response.data.items;
                     this.isLoaded = true;
+                    let page = response.data.pages;
+                    if (Number.parseInt(page) == page)
+                        this.pages = page;
+                    else
+                        this.pages = Number.parseInt(page) + 1;
                 });
             },
             parseTime: function (time) {
@@ -228,7 +238,36 @@
                 if (this.activeImage >= this.items[this.activeItem].images.length || this.activeImage < 0) {
                     this.activeImage += type ? -1 : 1;
                 }
+            },
+            authorize: function () {
+                window.location.href = 'http://127.0.0.1:9000';
             }
         }
     }
 </script>
+
+<style>
+    .box-shadowed {
+        height: 23px;
+        width: max-content;
+        background: #fff;
+        border-radius: 4px;
+        margin-right: 8px;
+        box-shadow: 0 1px 4px #cbc8c8;
+        padding: 2px 3px 0 3px;
+        font-size: 2vh;
+        text-align: center
+    }
+
+    .pagination {
+        width: 92%;
+        margin-top: 26px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .pagination .box-shadowed {
+        min-width: 24px;
+        margin-bottom: 8px;
+    }
+</style>

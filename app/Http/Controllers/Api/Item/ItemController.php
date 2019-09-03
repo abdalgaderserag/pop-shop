@@ -18,8 +18,21 @@ class ItemController extends Controller
      */
     public function index()
     {
+        if (isset($_GET['page'])) {
+            $page = (int)$_GET['page'];
+        } else {
+            $page = 1;
+        }
+
+        $perPage = config('pop.perPage');
+
 //        get the item with at lest one in stock
-        $data['items'] = Item::unless('stock', '==', 0)->with('user', 'category')->withCount('likes')->orderBy('created_at', 'desc')->get();
+        $items = Item::unless('stock', '==', 0)
+            ->with('user', 'category')
+            ->withCount('likes')
+            ->orderBy('created_at', 'desc');
+        $data['pages'] = $items->count() / $perPage;
+        $data['items'] = $items->forPage($page, $perPage)->get();
 
 //        assign if the user like this
         $i = 0;

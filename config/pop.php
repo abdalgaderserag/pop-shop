@@ -11,5 +11,7 @@ return [
         'other'
     ],
 
+    'perPage' => 25,
+
     'def-avatar' => '/',
 ];
