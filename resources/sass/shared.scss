@@ -122,3 +122,12 @@ body {
     background-color: $lightGray;
   }
 }
+
+.pointer:after{
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  border-bottom: 12px solid $gray;
+  content: "";
+  position: absolute;
+  transform: rotate(90deg) translate(5px, 12px);
+}

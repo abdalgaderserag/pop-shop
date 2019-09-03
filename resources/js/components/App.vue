@@ -42,12 +42,14 @@
 
                 <div class="item-left">
                     <img :src="reConImage(activeImage)" class="item-image main-image">
+
                     <div v-if="!singleItemMode" class="flex-box" style="width: 100%;">
                         <div style="width: 8%;height: 64px" @click="changeImage(true)"><</div>
                         <img v-for="(image,index) in item.images" v-if="index + activeImage < 3 + activeImage"
                              style="width: 28%;height: 64px" :src="reConImage(index)" alt="">
                         <div style="width: 8%;height: 64px" @click="changeImage(false)">></div>
                     </div>
+
                     <div>
                         {{ parseTime(item.created_at) }}
                     </div>
@@ -56,10 +58,13 @@
                 <div class="item-body">
                     <div class="flex-box item-text">
                         <div style="width: 100%;">
-                            <div class="flex-box" style="font-size: 3.5vh;justify-content: space-between">
+                            <div class="flex-box item-title">
                                 <div>{{ item.title }}</div>
-                                <div v-if="!singleItemMode" class="flex-box" style="width: 24px;flex-direction: column;"
-                                     v-html="hart + '<div style=\'font-size:2.2vh;text-align: center;\'>' + item.likes_count+ '</div>'">
+                                <!--<div v-if="!singleItemMode" class="flex-box" style="width: 24px;flex-direction: column;"-->
+                                <!--v-html="hart + '<div style=\'font-size:2.2vh;text-align: center;\'>' + item.likes_count+ '</div>'">-->
+                                <div v-if="!singleItemMode" class="flex-box"
+                                     style="width: 24px;flex-direction: row-reverse"
+                                     v-html="'<div style=\'width: 24px\'>'+hart+'</div><div style=\'min-width: 24px;height: 23px;background: #fff;border-radius: 4px;margin-right:8px;box-shadow: 0 1px 4px #cbc8c8;padding:2px 3px 0 3px;font-size: 2vh;text-align: center\'>2M</div>'">
                                 </div>
                             </div>
                             <span> - {{ '$' + item.budget }}</span>
@@ -138,6 +143,11 @@
                     this.items[i].hart = this.hart;
                 }
             });
+            document.onscroll = (e) => {
+                let scroll = window.scrollY;
+                document.getElementsByClassName('left-section')[0].style.marginTop = scroll + 'px';
+                document.getElementsByClassName('right-section')[0].style.marginTop = scroll + 'px';
+            }
         },
 
         methods: {

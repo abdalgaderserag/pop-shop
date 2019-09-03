@@ -96,7 +96,7 @@
                     let counts = filters.length;
                     if (filters[0] == 'location')
                         this.locations = filters[1].split('&')[0];
-                    console.log(filters);
+
                     for (let i = 1; i < counts; i++) {
                         let hood = filters[i].split('&')[1];
                         if (hood == 'min')
