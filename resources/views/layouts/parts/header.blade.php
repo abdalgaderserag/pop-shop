@@ -44,6 +44,14 @@
                 <div class="nav-item">
                     <img class="notification-icon" src="/site/notify.svg" alt="">
                 </div>
+                <div class="nav-item">
+                    <form id="logout" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                    </form>
+                    <span style="cursor: pointer;" onclick="event.preventDefault();document.getElementById('logout').submit();" class="link-clear nav-link">
+                        Logout
+                    </span>
+                </div>
             </div>
         @else
             <div class="nav-group flex-box">

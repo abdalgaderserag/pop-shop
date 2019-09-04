@@ -32,22 +32,9 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/profile';
 
 
-    public function register(Request $request)
-    {
-        $this->validator($request->all())->validate();
-        $user = new User($request->all());
-        $user->id = '44e1cc94-b973-33ab-a16a-1948c3a443b5';
-        $user->save();
-        event(new Registered($user));
-
-        $this->guard()->login($user);
-
-        return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
-    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -74,7 +61,6 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'slug' => $data['slug'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
