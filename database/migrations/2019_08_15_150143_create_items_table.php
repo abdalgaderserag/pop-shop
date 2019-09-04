@@ -20,6 +20,10 @@ class CreateItemsTable extends Migration
             $table->text('details');
             $table->integer('budget');
             $table->smallInteger('cents');
+            $table->smallInteger('discount')->nullable();
+            $table->timestamp('start_at', 0)->nullable();
+            $table->timestamp('end_at', 0)->nullable();
+            $table->integer('offer')->nullable();
             $table->text('images')->nullable();
             $table->integer('stock', false, true)->nullable();
             $table->timestamps();

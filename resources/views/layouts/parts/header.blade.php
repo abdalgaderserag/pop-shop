@@ -29,20 +29,35 @@
         </div>
 
         {{--right side of the nav bar hold avatar and notification icon--}}
-        <div class="nav-group flex-box">
-            <div class="nav-item">
-                <a class="link-clear nav-link" href="/profile">
-                    Abd Al-gader Sirag
-                </a>
+        @auth
+            <div class="nav-group flex-box">
+                <div class="nav-item">
+                    <a class="link-clear nav-link" href="/profile">
+                        Abd Al-gader Sirag
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="/profile">
+                        <img class="nav-avatar" src="/test/avatar.png" alt="">
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <img class="notification-icon" src="/site/notify.svg" alt="">
+                </div>
             </div>
-            <div class="nav-item">
-                <a href="/profile">
-                    <img class="nav-avatar" src="/test/avatar.png" alt="">
-                </a>
+        @else
+            <div class="nav-group flex-box">
+                <div class="nav-item">
+                    <a class="link-clear nav-link" href="/login">
+                        Login
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="link-clear nav-link" href="/register">
+                        Register
+                    </a>
+                </div>
             </div>
-            <div class="nav-item">
-                <img class="notification-icon" src="/site/notify.svg" alt="">
-            </div>
-        </div>
+        @endauth
     </div>
 </div>
