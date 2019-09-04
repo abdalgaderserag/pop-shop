@@ -4,21 +4,13 @@
         {{--left side of the navbar--}}
         <div class="nav-group flex-box">
             <div class="nav-item nav-title">
-                Pop Shop
+                <a class="link-clear nav-link" href="/">
+                    Pop Shop
+                </a>
             </div>
             <div class="nav-item">
                 |
             </div>
-            {{--<div class="nav-item">
-                <a class="link-clear nav-link" href="/dashboard">
-                    Dashboard
-                </a>
-            </div>
-            <div class="nav-item">
-                <a class="link-clear nav-link" href="/marketplace">
-                    Marketplace
-                </a>
-            </div>--}}
             @foreach(config('pop.category') as $category)
                 <div class="nav-item">
                     <a class="link-clear nav-link" href="dashboard?{{ $category }}">
@@ -48,7 +40,9 @@
                     <form id="logout" action="{{ route('logout') }}" method="POST">
                         @csrf
                     </form>
-                    <span style="cursor: pointer;" onclick="event.preventDefault();document.getElementById('logout').submit();" class="link-clear nav-link">
+                    <span style="cursor: pointer;"
+                          onclick="event.preventDefault();document.getElementById('logout').submit();"
+                          class="link-clear nav-link">
                         Logout
                     </span>
                 </div>
