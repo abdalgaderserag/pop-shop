@@ -21,4 +21,9 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::get('/payment', 'HomeController@payment')->name('payment');
 Route::get('/items', 'HomeController@items')->name('items');
 
-Route::resource('profile','User\UserController')->except(['store','create']);
+Route::resource('profile', 'User\UserController')->except(['store', 'create']);
+
+
+Route::get('/redirect', 'Walte\WalteController@redirect');
+
+Route::get('/callback', 'Walte\WalteController@callback');
