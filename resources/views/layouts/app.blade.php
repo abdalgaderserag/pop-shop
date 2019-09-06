@@ -17,13 +17,15 @@
 </head>
 <body>
 <div id="app">
+
     @include('layouts.parts.header')
+
     <div class="container">
         @yield('content')
     </div>
-</div>
 
-@include('layouts.parts.footer')
+    @include('layouts.parts.footer')
+</div>
 <script>
     let app = new Vue({
         el: '#app',

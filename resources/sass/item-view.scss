@@ -47,3 +47,73 @@
   padding: 8px 12px;
   cursor: pointer;
 }
+
+
+.item-card {
+  width: 96%;
+  color: $black;
+  padding: 14px 2%;
+  background-color: $white;
+  border: 1px solid $border;
+  //cursor: pointer;
+
+  .item-left {
+    //width: 30%;
+
+    .item-image {
+      height: 246px;
+      width: 100%;
+      cursor: pointer;
+      object-fit: cover;
+    }
+  }
+
+  .item-body {
+    //width: 68%;
+    padding-left: 2%;
+
+    .item-text {
+      div {
+        .item-title {
+          font-size: 3.5vh;
+          justify-content: space-between;
+          cursor: pointer;
+          user-select: none;
+        }
+      }
+
+      span:first-child {
+        font-family: $font-family-base-2;
+        user-select: none;
+        font-size: 2.7vh;
+      }
+    }
+
+    .item-tag {
+      height: 20px;
+      width: max-content;
+      border-radius: 12px;
+      margin: 0 0 0 6px;
+      float: left;
+      background-color: $color;
+      padding: 3px 9px 1px 8px;
+      color: $white;
+      font-weight: 500;
+    }
+
+    .item-text:first-child {
+      span {
+        font-size: 3.5vh;
+      }
+
+      span:first-child {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.item-card:hover {
+  background-color: rgba(249, 249, 249, 0.5);
+  box-shadow: inset 0 0 10px -4px #838383;
+}

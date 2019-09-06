@@ -43,4 +43,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Bio');
     }
+
+    public function items()
+    {
+        return $this->hasMany('App\Item');
+    }
 }

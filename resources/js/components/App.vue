@@ -106,7 +106,7 @@
 
             <div class="card-footer"></div>
 
-            <div class="flex-box pagination">
+            <div class="flex-box pagination" v-if="singleItemMode">
                 <a v-for="page in pages" :href="'?page='+page" class="link-clear">
                     <div class="box-shadowed">{{ page }}</div>
                 </a>
