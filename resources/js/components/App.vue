@@ -79,10 +79,10 @@
                     <div class="item-text"><span>Category :</span>
                         <span> {{item.category.base_type}} / {{ item.category.seconder_type }}</span></div>
 
-                    <div class="item-text"><span>By</span> <a :href="'/profile/' + item.user.id"
-                                                              style="background: #fff;border-radius: 16px;box-shadow: 0 1px 4px #cbc8c8;padding: 8px 8px 0 8px;margin: 0 0 0 10px;"
-                                                              class="link-clear">
-                        {{item.user.name }}</a>
+                    <div class="item-text"><span>By</span>
+                        <a :href="'/profile/' + item.user.id"
+                           style="background: #fff;border-radius: 16px;box-shadow: 0 1px 4px #cbc8c8;padding: 8px 8px 0 8px;margin: 0 0 0 10px;"
+                           class="link-clear" @click="preventIt()">{{item.user.name }}</a>
                     </div>
 
                     <div v-if="item.stock != 'unlimited'" class="item-text">
@@ -107,7 +107,9 @@
             <div class="card-footer"></div>
 
             <div class="flex-box pagination">
-                <a v-for="page in pages" :href="'?page='+page" class="link-clear"><div class="box-shadowed">{{ page }}</div></a>
+                <a v-for="page in pages" :href="'?page='+page" class="link-clear">
+                    <div class="box-shadowed">{{ page }}</div>
+                </a>
             </div>
         </div>
 
@@ -133,6 +135,8 @@
 
                 hart: '<3',
                 pages: 0,
+
+                preventDefault: false,
             }
         },
         mounted() {
@@ -187,19 +191,21 @@
                     return time.slice(0, time.length - 9);
             },
             displayItem: function (index = '') {
-                if (this.singleItemMode) {
-                    let item = this.items[index];
-                    let main = document.getElementsByClassName('main-section')[0];
-                    if (main.offsetWidth + 100 > window.window.innerWidth) {
-                        window.location.href += 'item/' + item.id;
-                        return;
+                if (!this.preventDefault) {
+                    if (this.singleItemMode) {
+                        let item = this.items[index];
+                        let main = document.getElementsByClassName('main-section')[0];
+                        if (main.offsetWidth + 100 > window.window.innerWidth) {
+                            window.location.href += 'item/' + item.id;
+                            return;
+                        }
+                        main.style.width = '100%';
+                        this.activeItem = index;
+                        this.singleItemMode = false;
+                        this.screenLocation = window.scrollY;
+                        let element = document.getElementsByClassName('item-card')[index];
+                        this.hideOtherItems(element);
                     }
-                    main.style.width = '100%';
-                    this.activeItem = index;
-                    this.singleItemMode = false;
-                    this.screenLocation = window.scrollY;
-                    let element = document.getElementsByClassName('item-card')[index];
-                    this.hideOtherItems(element);
                 }
             },
             hideOtherItems: function (item) {
@@ -241,6 +247,9 @@
             },
             authorize: function () {
                 window.location.href = 'http://127.0.0.1:9000';
+            },
+            preventIt: function () {
+                this.preventDefault = true;
             }
         }
     }

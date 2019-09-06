@@ -19,10 +19,6 @@
 <div id="app">
     @include('layouts.parts.header')
     <div class="container">
-        <div class="nav-item search-bar">
-            <button>S</button>
-            <input type="search" placeholder="Search Item">
-        </div>
         @yield('content')
     </div>
 </div>

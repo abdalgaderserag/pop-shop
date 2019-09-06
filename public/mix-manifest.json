@@ -2,5 +2,6 @@
     "/js/app.js": "/js/app.js",
     "/css/shared/shared.css": "/css/shared/shared.css",
     "/css/parts/header.css": "/css/parts/header.css",
+    "/css/profile/item-view.css": "/css/profile/item-view.css",
     "/css/items.css": "/css/items.css"
 }
