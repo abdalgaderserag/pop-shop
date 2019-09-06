@@ -8,28 +8,42 @@
                     Pop Shop
                 </a>
             </div>
-            <div class="nav-item">
+            <div style="padding: 10px 12px 0 0;" class="nav-item">
                 |
             </div>
-            @foreach(config('pop.category') as $category)
+            @auth
                 <div class="nav-item">
-                    <a class="link-clear nav-link" href="dashboard?{{ $category }}">
-                        {{ $category }}
+                    <a class="link-clear nav-link" href="/dashboard">
+                        Dashboard
                     </a>
                 </div>
-            @endforeach
+                <div class="nav-item">
+                    <a class="link-clear nav-link" href="/payment">
+                        Payment
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="link-clear nav-link" href="/items">
+                        Items
+                    </a>
+                </div>
+            @else
+                @foreach(config('pop.category') as $category)
+                    <div class="nav-item">
+                        <a class="link-clear nav-link" href="/dashboard?{{ $category }}">
+                            {{ $category }}
+                        </a>
+                    </div>
+                @endforeach
+            @endauth
         </div>
 
         {{--right side of the nav bar hold avatar and notification icon--}}
         @auth
             <div class="nav-group flex-box">
                 <div class="nav-item">
-                    <a class="link-clear nav-link" href="/profile">
-                        Abd Al-gader Sirag
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="/profile">
+                    <a class="link-clear nav-link flex-box" href="/profile">
+                        <div style="padding: 7px 6px 0 0;">Abd Al-gader Sirag</div>
                         <img class="nav-avatar" src="/test/avatar.png" alt="">
                     </a>
                 </div>
