@@ -23,6 +23,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('user.dashboard');
+    }
+
+    /**
+     * Show Registered user payments.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function payment()
+    {
+        return view('user.payment');
+    }
+
+    /**
+     * Show Registered user added items.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function items()
+    {
+        return view('user.items');
     }
 }

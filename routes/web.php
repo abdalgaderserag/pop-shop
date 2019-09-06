@@ -12,11 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('items');
+    return view('marketplace');
 });
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/payment', 'HomeController@payment')->name('payment');
+Route::get('/items', 'HomeController@items')->name('items');
 
-Route::resource('profile','UserController')->except(['store','create']);
+Route::resource('profile','User\UserController')->except(['store','create']);
