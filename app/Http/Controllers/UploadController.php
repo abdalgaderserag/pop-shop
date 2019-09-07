@@ -45,6 +45,6 @@ class UploadController extends Controller
         } else
             return response()->json('unknown file type', 800);
 
-        return response()->json(['path' => $path, 'type' => $file_type], 200);
+        return response()->json(['path' => '/' . $path, 'type' => $file_type], 200);
     }
 }

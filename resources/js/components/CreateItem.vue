@@ -45,12 +45,14 @@
                     <div class="checked"></div>
                 </div>
 
-                <div class="input-text"
-                     style="height: 120px;width: 120px;background: #fff;cursor: pointer;border-style: dashed;border-width: 6px;"
-                     @click="uploadImage">
+                <div class="flex-box" style="flex-wrap: wrap;justify-content: center">
+                    <div v-for="(image,index) in images" v-if="index < 6" class="input-text image-h-upload" @click="uploadImage">
+                        <!--<div style="width: 100%;text-align: center">Main</div>-->
+                        <input type="file" class="file-input">
+                        <img :name="index" class="add-image" :src="image.url" alt="">
+                    </div>
                 </div>
 
-                <input type="file" style="display: none" id="upload">
             </div>
         </div>
     </div>
@@ -59,9 +61,31 @@
 <script>
     export default {
         name: "CreateItem",
+        data() {
+            return {
+                images: [
+                    {
+                        url: '',
+                    },
+                ],
+            }
+        },
         methods: {
             uploadImage: function (event) {
-                let uploder = document.getElementById('upload');
+                let uploder = event.target.children[0];
+
+
+                if (event.target.className == 'file-input')
+                    return;
+
+                if (event.target.className == 'add-image'){
+                    this.images.splice(Number.parseInt(event.target.name), 1);
+                    return;
+                }
+
+                if (this.images.length > 6)
+                    return;
+
                 uploder.click();
                 uploder.onchange = (e) => {
                     let reader = new FileReader();
@@ -70,7 +94,13 @@
                         axios.post('/api/upload', {
                             result: reader.result,
                         }).then((response) => {
-                            console.log(response);
+                            this.images[this.images.length - 1].url = response.data.path;
+
+                            this.images.push({
+                                url: '',
+                            });
+
+                            e.target.parentElement.className += " image-loaded";
                         });
                     };
                 }
@@ -86,5 +116,32 @@
 
     .input-text {
         margin-left: 5%;
+    }
+
+    .image-h-upload {
+        height: 120px;
+        width: 120px;
+        background: #fff;
+        cursor: pointer;
+        border-style: dashed;
+        border-width: 6px;
+        margin-bottom: 24px;
+    }
+
+    .file-input {
+        display: none;
+    }
+
+    .add-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .image-loaded {
+        padding: 0;
+        width: 128px;
+        height: 128px;
+        border-radius: 0;
     }
 </style>
