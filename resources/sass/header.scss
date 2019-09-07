@@ -19,28 +19,28 @@
     .nav-group {
       width: 50%;
 
-        .nav-item {
-          padding: 10px 0 0 1%;
-          color: $gray;
+      .nav-item {
+        padding: 10px 0 0 6px;
+        color: $gray;
 
-          .notification-icon {
-            width: 20px;
-            padding: 4px 0 0 0;
-          }
-
-          .nav-avatar {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            margin: -3px 0 0 0;
-          }
-
-
-          .nav-link {
-            font-family: Helvetica;
-            font-size: 1.8vh
-          }
+        .notification-icon {
+          width: 20px;
+          padding: 4px 0 0 0;
         }
+
+        .nav-avatar {
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          margin: -3px 0 0 0;
+        }
+
+
+        .nav-link {
+          font-family: Helvetica;
+          font-size: 1.8vh
+        }
+      }
 
       .nav-title {
         .nav-link {

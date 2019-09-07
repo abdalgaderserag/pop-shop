@@ -3,14 +3,13 @@
 
         {{--left side of the navbar--}}
         <div class="nav-group flex-box">
-            <div class="nav-item nav-title">
+            <div class="nav-item nav-title" style="padding: 12px 0 0 1%;">
+                {{--<a class="link-clear nav-link" href="/">Pop Shop </a>--}}
                 <a class="link-clear nav-link" href="/">
-                    Pop Shop
+                    <img style="width: 90px" src="/site/pop shop.jpg">
                 </a>
             </div>
-            <div style="padding: 10px 12px 0 0;" class="nav-item">
-                |
-            </div>
+            <div class="nav-item" style="padding-right: 10px">|</div>
             @auth
                 <div class="nav-item">
                     <a class="link-clear nav-link" href="/dashboard">
