@@ -146,3 +146,11 @@ body {
 .input-button:hover {
   box-shadow: 0 2px 8px -1px $border;
 }
+
+
+.input-text {
+  padding: 4px 8px;
+  width: 75%;
+  border-radius: 4px;
+  border: 1px solid $border;
+}

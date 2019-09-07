@@ -31,6 +31,7 @@ Vue.component('app', require("./components/App").default);
 Vue.component('filters', require("./components/filters/Filters").default);
 Vue.component('categories', require("./components/filters/Categories").default);
 
+Vue.component('create-item', require("./components/CreateItem").default);
 
 
 /**
