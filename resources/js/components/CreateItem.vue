@@ -9,10 +9,10 @@
                 <div>budget*</div>
                 <input class="input-text small-input" type="text" required>
                 <span>.</span>
-                <input class="input-text small-input" type="text">
+                <input class="input-text small-input" style="margin: 0;" type="text">
 
                 <div>details*</div>
-                <textarea style="min-width: 100%;max-width: 100%;min-height: 124px" class="input-text"
+                <textarea style="min-width: 95%;max-width: 100%;min-height: 124px" class="input-text"
                           required>
                 </textarea>
 
@@ -28,7 +28,7 @@
                 <div>category*</div>
                 <input class="input-text small-input" type="text" required>
                 /
-                <input class="input-text small-input" type="text" required>
+                <input class="input-text small-input" style="margin: 0;" type="text" required>
 
                 <div>Location*</div>
                 <input class="input-text small-input" type="text" required>
@@ -45,9 +45,9 @@
                     <div class="checked"></div>
                 </div>
 
-                <div class="input-text" style="height: 120px;width: 120px;background: #fff;cursor: pointer"
+                <div class="input-text"
+                     style="height: 120px;width: 120px;background: #fff;cursor: pointer;border-style: dashed;border-width: 6px;"
                      @click="uploadImage">
-                    <img src="" id="image" alt="">
                 </div>
 
                 <input type="file" style="display: none" id="upload">
@@ -67,7 +67,11 @@
                     let reader = new FileReader();
                     reader.readAsDataURL(e.target.files[0]);
                     reader.onload = () => {
-                        // TODO
+                        axios.post('/api/upload', {
+                            result: reader.result,
+                        }).then((response) => {
+                            console.log(response);
+                        });
                     };
                 }
             }
@@ -78,5 +82,9 @@
 <style scoped>
     .small-input {
         width: 20%;
+    }
+
+    .input-text {
+        margin-left: 5%;
     }
 </style>

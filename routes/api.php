@@ -24,3 +24,5 @@ Route::get('rate', 'Api\Interact\RateController');
 
 Route::apiResource('item', 'Api\Item\ItemController');
 Route::apiResource('cart', 'Api\Money\CartController');
+
+Route::post('upload', 'UpLoadController');
