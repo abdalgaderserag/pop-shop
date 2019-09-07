@@ -131,3 +131,18 @@ body {
   position: absolute;
   transform: rotate(90deg) translate(5px, 12px);
 }
+
+.input-button {
+  width: 84%;
+  background-color: $color;
+  border-width: 0;
+  color: $white;
+  font-family: $font-family-base-2;
+  font-size: 2.5vh;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.input-button:hover {
+  box-shadow: 0 2px 8px -1px $border;
+}
