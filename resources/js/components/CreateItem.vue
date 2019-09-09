@@ -3,15 +3,15 @@
         <div class="main-section" style="width: 100%">
             <!--<div>Create Item:</div>-->
             <div>
-                <div>item title*</div>
+                <div>item title<span class="red">*</span></div>
                 <input class="input-text" type="text" required>
 
-                <div>budget*</div>
+                <div>budget<span class="red">*</span></div>
                 <input class="input-text small-input" type="text" required>
                 <span>.</span>
                 <input class="input-text small-input" style="margin: 0;" type="text">
 
-                <div>details*</div>
+                <div>details<span class="red">*</span></div>
                 <textarea style="min-width: 95%;max-width: 100%;min-height: 124px" class="input-text"
                           required>
                 </textarea>
@@ -25,12 +25,12 @@
                 <br>
                 <input class="input-text" type="text">
 
-                <div>category*</div>
+                <div>category<span class="red">*</span></div>
                 <input class="input-text small-input" type="text" required>
                 /
                 <input class="input-text small-input" style="margin: 0;" type="text" required>
 
-                <div>Location*</div>
+                <div>Location<span class="red">*</span></div>
                 <input class="input-text small-input" type="text" required>
 
                 <br>
@@ -46,7 +46,8 @@
                 </div>
 
                 <div class="flex-box" style="flex-wrap: wrap;justify-content: center">
-                    <div v-for="(image,index) in images" v-if="index < 6" class="input-text image-h-upload" @click="uploadImage">
+                    <div v-for="(image,index) in images" v-if="index < 6" class="input-text image-h-upload"
+                         @click="uploadImage">
                         <!--<div style="width: 100%;text-align: center">Main</div>-->
                         <input type="file" class="file-input">
                         <img :name="index" class="add-image" :src="image.url" alt="">
@@ -78,7 +79,7 @@
                 if (event.target.className == 'file-input')
                     return;
 
-                if (event.target.className == 'add-image'){
+                if (event.target.className == 'add-image') {
                     this.images.splice(Number.parseInt(event.target.name), 1);
                     return;
                 }
@@ -143,5 +144,10 @@
         width: 128px;
         height: 128px;
         border-radius: 0;
+    }
+
+    .red {
+        color: #ff3008;
+        font-weight: 900;
     }
 </style>
