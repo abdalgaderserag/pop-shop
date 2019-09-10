@@ -1,6 +1,6 @@
 <template>
-    <div class="right-section" style="width: 20%;">
-        <div style="margin-left: 12%">
+    <div class="right-section">
+        <div class="category-body">
             <div class="flex-box mark-title">
                 <div></div>
                 <div>Categories</div>
