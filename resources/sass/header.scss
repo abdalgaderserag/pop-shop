@@ -57,3 +57,34 @@
     }
   }
 }
+
+
+@media only screen and (max-device-width: 480px) {
+  .nav-bar .nav-main {
+    width: 90%;
+    margin-left: 5%;
+    height: auto;
+  }
+
+  .nav-bar .nav-main .nav-group:first-child {
+    flex-direction: column;
+    .nav-icon {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-device-width: 960px) {
+  .nav-bar .nav-main {
+    height: auto;
+  }
+  .nav-bar .nav-main .nav-group:first-child {
+    flex-direction: column;
+    .nav-icon {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (min-width: 960px) {
+}

@@ -154,8 +154,11 @@
             });
             document.onscroll = (e) => {
                 let scroll = window.scrollY;
-                document.getElementsByClassName('left-section')[0].style.marginTop = scroll + 'px';
-                document.getElementsByClassName('right-section')[0].style.marginTop = scroll + 'px';
+                if (scroll < document.getElementsByClassName('pagination')[0].offsetTop - (window.innerHeight)) {
+                    document.getElementsByClassName('left-section')[0].style.marginTop = scroll + 'px';
+                    document.getElementsByClassName('right-section')[0].style.marginTop = scroll + 'px';
+                }
+
             }
         },
 
