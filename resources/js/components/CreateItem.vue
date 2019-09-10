@@ -2,7 +2,7 @@
     <div class="flex-box" style="margin: 0 20%">
         <div class="main-section" style="width: 100%">
             <!--<div>Create Item:</div>-->
-            <form action="#" method="get">
+            <form v-if="!isCalled" action="#" method="get" @submit="save">
                 <div>
                     <div>item title<span class="red">*</span></div>
                     <input class="input-text" type="text" placeholder="the name of your item and type" v-model="title"
@@ -10,7 +10,8 @@
 
                     <br><br>
                     <div>budget<span class="red">*</span></div>
-                    <input class="input-text small-input" placeholder="cost in dollars" v-model="cost" type="number"
+                    <input class="input-text small-input" style="width: 50%" placeholder="cost in dollars"
+                           v-model="cost" type="number"
                            required>
                     <span>.</span>
                     <input class="input-text small-input" placeholder="cents" v-model="cents" style="margin: 0;"
@@ -20,25 +21,34 @@
                     <div>details<span class="red">*</span></div>
                     <textarea style="min-width: 90%;max-width: 90%;min-height: 124px" class="input-text"
                               v-model="details"
-                              placeholder="tell the users about you item the peform and other stuff about the item."
+                              placeholder="tell the users about you item the perform and other stuff about the item."
                               required>
                 </textarea>
 
                     <br><br>
                     <div>amount</div>
-                    <span>unlimited</span>
+                    <span @click="checkit(2)" style="cursor: pointer">unlimited</span>
                     <div class="check">
-                        <div class="checked"></div>
+                        <div v-show="checks[2].status" class="checked" @click="checkit(2)"></div>
                     </div>
 
                     <br>
-                    <input placeholder="the amount of the item in stock" v-model="stock" class="input-text" type="text">
+                    <input placeholder="the amount of the item in stock" v-show="!checks[2].status" v-model="stock"
+                           class="input-text" type="text">
 
                     <br><br>
                     <div>category<span class="red">*</span></div>
-                    <input class="input-text small-input" type="text" required>
+                    <!--<input class="input-text small-input" type="text" required>-->
+                    <select v-model="base" class="input-text" style="width: 38%">
+                        <option>other</option>
+                        <option>cars</option>
+                    </select>
                     <span>/</span>
-                    <input class="input-text small-input" style="margin: 0;" type="text" required>
+                    <select v-model="second" class="input-text" style="width: 38%;margin: 0">
+                        <option>other</option>
+                        <option>cars</option>
+                    </select>
+                    <!--<input class="input-text small-input" style="margin: 0;" type="text" required>-->
 
                     <br><br>
                     <div>Location<span class="red">*</span></div>
@@ -46,15 +56,15 @@
                            required>
 
                     <br><br>
-                    <span>Exchangeable</span>
-                    <div class="check">
-                        <div class="checked"></div>
+                    <span @click="checkit(1)" style="cursor: pointer;">Exchangeable</span>
+                    <div @click="checkit(1)" class="check">
+                        <div v-show="checks[1].status" class="checked"></div>
                     </div>
 
                     <br><br>
-                    <span>Used</span>
-                    <div class="check">
-                        <div class="checked"></div>
+                    <span @click="checkit(0)" style="cursor: pointer;">Used</span>
+                    <div @click="checkit(0)" class="check">
+                        <div v-show="checks[0].status" class="checked"></div>
                     </div>
 
                     <br><br>
@@ -72,6 +82,65 @@
                     <button class="input-button" style="width: 100%">SAVE</button>
                 </div>
             </form>
+            <div v-else>
+                <div class="item-card flex-box">
+                    <div class="item-left">
+                        <img :src="item.images[0]" class="item-image main-image">
+                        <div>
+                            {{ item.created_at }}
+                        </div>
+                    </div>
+
+                    <div class="item-body">
+                        <div class="flex-box item-text">
+                            <div style="width: 100%;">
+                                <div class="flex-box item-title">
+                                    <div>{{ item.title }}</div>
+                                    <div class="flex-box"
+                                         style="width: 24px;flex-direction: row-reverse"
+                                         v-html="'<div style=\'width: 24px\'>'+hart+'</div><div class=\'box-shadowed\'>2M</div>'">
+                                    </div>
+                                </div>
+                                <span> - {{ '$' + item.budget }}</span>
+                            </div>
+                        </div>
+                        <div v-if="!singleItemMode" class="item-text">
+                            <button class="input-button" style="width: 26%;border-width:0;margin-bottom: 16px;"
+                                    @click="authorize()">Buy
+                            </button>
+                        </div>
+                        <div v-if="!singleItemMode" class="item-text">
+                            <div style="font-size: 2.4vh">{{ item.details }}</div>
+                        </div>
+                        <div class="item-text"><span>Location :</span>
+                            <span>{{ item.category.location }}</span></div>
+                        <div class="item-text"><span>Category :</span>
+                            <span> {{item.category.base_type}} / {{ item.category.seconder_type }}</span></div>
+
+                        <div class="item-text"><span>By</span>
+                            <a :href="'/profile/' + item.user.id"
+                               style="background: #fff;border-radius: 16px;box-shadow: 0 1px 4px #cbc8c8;padding: 8px 8px 0 8px;margin: 0 0 0 10px;"
+                               class="link-clear" @click="preventIt()">{{item.user.name }}</a>
+                        </div>
+
+                        <div v-if="item.stock != 'unlimited'" class="item-text">
+                            only <span>{{ item.stock }}</span> in stock
+                        </div>
+
+
+                        <br>
+                        <div v-if="item.stock == 'unlimited'" class="item-tag">
+                            Unlimited
+                        </div>
+                        <div v-if="item.category.exchangeable" class="item-tag">
+                            Exchangelable
+                        </div>
+                        <div v-if="item.category.used" class="item-tag">
+                            Used
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -81,19 +150,39 @@
         name: "CreateItem",
         data() {
             return {
-                images: [
-                    {
-                        url: '',
-                    },
-                ],
 
-                //    inputs
+                // inputs
                 title: '',
                 cost: '',
                 cents: '',
                 details: '',
                 stock: '',
                 location: '',
+                base: 'Other',
+                second: 'Other',
+                checks: [
+                    {
+                        name: 'Exchangeable',
+                        status: false,
+                    },
+                    {
+                        name: 'Used',
+                        status: false,
+                    },
+                    {
+                        name: 'Unlimited',
+                        status: false,
+                    },
+                ],
+                images: [
+                    {
+                        url: '',
+                    },
+                ],
+
+                // callback item
+                isCalled: false,
+                item: {},
             }
         },
         methods: {
@@ -146,6 +235,50 @@
                         });
                     };
                 }
+            },
+            checkit: function (index) {
+                this.checks[index].status = !this.checks[index].status;
+            },
+            save: function (e) {
+                let images = [];
+                for (let i = 0; i < this.images.length - 1; i++) {
+                    images[i] = this.images[i];
+                }
+                let data = {
+                    title: this.title,
+                    details: this.details,
+                    budget: this.budget,
+                    cents: this.cents,
+                    images: images,
+                    stock: this.stock,
+                    base_type: this.base,
+                    seconder_type: this.second,
+                    exchangeable: this.checks[0].status,
+                    used: this.checks[1].status,
+                    unlimited: this.checks[2].status,
+                };
+                if (data.images.length > 4) {
+                    axios.post('/api/item', data)
+                        .then((response) => {
+                            this.item = response.data;
+                            this.title = '';
+                            this.cost = '';
+                            this.cents = '';
+                            this.details = '';
+                            this.stock = '';
+                            this.location = '';
+                            this.base = '';
+                            this.second = '';
+                            for (let i = 0; i < this.checks.length; i++)
+                                this.checks[i].status = false;
+
+                            for (let i = 0; i < this.images.length; i++)
+                                images.pop();
+                            this.images.push({
+                                url: '',
+                            });
+                        });
+                }
             }
         }
     }
@@ -168,6 +301,7 @@
         border-style: dashed;
         border-width: 6px;
         margin-bottom: 24px;
+        border-radius: 0;
         animation-duration: 1500ms;
         animation-iteration-count: infinite;
     }
@@ -186,7 +320,6 @@
         padding: 0;
         width: 128px;
         height: 128px;
-        border-radius: 0;
     }
 
     .red {

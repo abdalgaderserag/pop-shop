@@ -24,5 +24,5 @@ Route::get('/items', 'HomeController@items')->name('items');
 Route::resource('profile', 'User\UserController')->except(['store', 'create']);
 
 
-Route::get('/redirect', 'Wallet\WalletController@redirect');
-Route::get('/callback', 'Wallet\WalletController@callback');
+//Route::get('/redirect', 'Wallet\WalletController@redirect');
+//Route::get('/callback', 'Wallet\WalletController@callback');
