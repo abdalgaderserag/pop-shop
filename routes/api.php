@@ -26,3 +26,5 @@ Route::apiResource('item', 'Api\Item\ItemController');
 Route::apiResource('cart', 'Api\Money\CartController');
 
 Route::post('upload', 'UpLoadController');
+
+Route::get('/request', 'Wallet\WalletController@getRequest');

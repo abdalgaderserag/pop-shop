@@ -140,6 +140,9 @@
                         </div>
                     </div>
                 </div>
+                <a href="/">
+                    <button class="input-button" style="width: 100%;background-color: gray">return to home</button>
+                </a>
             </div>
         </div>
     </div>
@@ -244,6 +247,28 @@
                 for (let i = 0; i < this.images.length - 1; i++) {
                     images[i] = this.images[i];
                 }
+
+                /*
+                let data = [
+                    this.title,
+                    this.details,
+                    this.budget,
+                    this.cents,
+                    images,
+                    this.stock,
+                    this.base,
+                    this.second,
+                    this.checks[0].status,
+                    this.checks[1].status,
+                    this.checks[2].status,
+                ];
+
+                let url ="?";
+                for (let i = 0; i < data.length; i++) {
+
+                }
+                */
+
                 let data = {
                     title: this.title,
                     details: this.details,
@@ -257,6 +282,7 @@
                     used: this.checks[1].status,
                     unlimited: this.checks[2].status,
                 };
+
                 if (data.images.length > 4) {
                     axios.post('/api/item', data)
                         .then((response) => {

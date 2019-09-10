@@ -32,9 +32,6 @@
         data: {
             hart: '<3',
         },
-        before() {
-
-        }
     });
 </script>
 

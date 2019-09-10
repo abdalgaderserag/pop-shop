@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Walte;
+namespace App\Http\Controllers\Wallet;
 
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -13,7 +13,7 @@ class WalletController extends Controller
     public function redirect()
     {
 
-        if (\Illuminate\Support\Facades\Session::has('access_token'))
+        if (!\Illuminate\Support\Facades\Session::has('access_token'))
             return redirect()->back();
 
         $query = http_build_query([
@@ -45,5 +45,22 @@ class WalletController extends Controller
         \Illuminate\Support\Facades\Session::put('access_token', $data['access_token']);
 
         return redirect('/');
+    }
+
+    public function getRequest()
+    {
+        $http = new Client();
+        $response = $http->post('http://127.0.0.1:9000/oauth/token',
+            [
+                'form_params' => [
+                    'grant_type' => 'authorization_code',
+                    'client_id' => 4,
+                    'client_secret' => 'TliPFUIYq6Ot7w7KusGFQkjmYM2QXRQPA5sqhw7b',
+                    'redirect_uri' => 'http://127.0.0.1:8000/callback',
+                ]
+            ]);
+
+        $data = json_decode((string)$response->getBody(), true);
+        return response()->json($data);
     }
 }
