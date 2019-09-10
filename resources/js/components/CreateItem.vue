@@ -5,17 +5,22 @@
             <form action="#" method="get">
                 <div>
                     <div>item title<span class="red">*</span></div>
-                    <input class="input-text" type="text" required>
+                    <input class="input-text" type="text" placeholder="the name of your item and type" v-model="title"
+                           required>
 
                     <br><br>
                     <div>budget<span class="red">*</span></div>
-                    <input class="input-text small-input" type="text" required>
+                    <input class="input-text small-input" placeholder="cost in dollars" v-model="cost" type="number"
+                           required>
                     <span>.</span>
-                    <input class="input-text small-input" style="margin: 0;" type="text">
+                    <input class="input-text small-input" placeholder="cents" v-model="cents" style="margin: 0;"
+                           type="number">
 
                     <br><br>
                     <div>details<span class="red">*</span></div>
-                    <textarea style="min-width: 100%;max-width: 100%;min-height: 124px" class="input-text"
+                    <textarea style="min-width: 90%;max-width: 90%;min-height: 124px" class="input-text"
+                              v-model="details"
+                              placeholder="tell the users about you item the peform and other stuff about the item."
                               required>
                 </textarea>
 
@@ -27,7 +32,7 @@
                     </div>
 
                     <br>
-                    <input class="input-text" type="text">
+                    <input placeholder="the amount of the item in stock" v-model="stock" class="input-text" type="text">
 
                     <br><br>
                     <div>category<span class="red">*</span></div>
@@ -37,7 +42,8 @@
 
                     <br><br>
                     <div>Location<span class="red">*</span></div>
-                    <input class="input-text small-input" type="text" required>
+                    <input class="input-text" v-model="location" placeholder="where the item will delivered" type="text"
+                           required>
 
                     <br><br>
                     <span>Exchangeable</span>
@@ -57,7 +63,6 @@
                     <div class="flex-box" style="flex-wrap: wrap;justify-content: center">
                         <div v-for="(image,index) in images" v-if="index < 6" class="input-text image-h-upload"
                              @click="uploadImage">
-                            <!--<div style="width: 100%;text-align: center">Main</div>-->
                             <input type="file" class="file-input">
                             <img :name="index" class="add-image" :src="image.url" alt="">
                         </div>
@@ -81,6 +86,14 @@
                         url: '',
                     },
                 ],
+
+                //    inputs
+                title: '',
+                cost: '',
+                cents: '',
+                details: '',
+                stock: '',
+                location: '',
             }
         },
         methods: {
