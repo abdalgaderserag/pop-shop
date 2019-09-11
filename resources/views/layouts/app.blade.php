@@ -10,9 +10,6 @@
 
     <title>@yield('title','Pop Shop')</title>
 
-    <link rel="stylesheet" href="/css/shared/shared.css">
-    <link rel="stylesheet" href="/css/parts/header.css">
-    <script src="/js/app.js"></script>
     @yield('styles')
 </head>
 <body>
@@ -26,14 +23,15 @@
 
     @include('layouts.parts.footer')
 </div>
-<script>
+<script src="/js/app.js"></script>
+{{--<script>
     let app = new Vue({
         el: '#app',
         data: {
             hart: '<3',
         },
     });
-</script>
+</script>--}}
 
 </body>
 </html>

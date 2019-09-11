@@ -6,6 +6,8 @@ $Auth = $user->id == \Illuminate\Support\Facades\Auth::id();
 @section('title',$user->name . ' | Profile')
 
 @section('styles')
+    <link rel="stylesheet" href="/css/shared/shared.css">
+    <link rel="stylesheet" href="/css/parts/header.css">
     <link rel="stylesheet" href="/css/profile/item-view.css">
 @endsection
 

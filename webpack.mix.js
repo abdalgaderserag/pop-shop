@@ -16,5 +16,6 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/header.scss', 'public/css/parts')
     .sass('resources/sass/footer.scss', 'public/css/parts')
     .sass('resources/sass/item-view.scss', 'public/css/profile')
+    .sass('resources/sass/log.scss', 'public/css/log')
     .sass('resources/sass/items.scss', 'public/css');
 
