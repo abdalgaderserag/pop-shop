@@ -36,7 +36,7 @@ $Auth = $user->id == \Illuminate\Support\Facades\Auth::id();
 
             <div class="flex-box" style="flex-wrap: wrap">
                 @foreach($user->items as $item)
-                    <div class="item-card" style="width: 43%;margin: 12px 0 0 2%;background-color: white;">
+                    <div class="item-card">
                         <div class="item-left">
                             <img src="/{{ $item->images[0] }}" class="item-image main-image">
                         </div>
@@ -46,8 +46,7 @@ $Auth = $user->id == \Illuminate\Support\Facades\Auth::id();
                                 <div style="width: 100%;">
                                     <div class="flex-box item-title">
                                         <div>{{ $item->title . ' - $' . $item->budget }}</div>
-                                        <button class="input-button"
-                                                style="width: 26%;border-width:0;margin-bottom: 16px;">
+                                        <button class="input-button">
                                             Buy
                                         </button>
                                     </div>

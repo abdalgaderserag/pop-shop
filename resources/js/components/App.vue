@@ -155,7 +155,7 @@
             document.onscroll = (e) => {
                 let scroll = window.scrollY;
                 if (scroll < document.getElementsByClassName('pagination')[0].offsetTop - (window.innerHeight)
-                    && document.getElementsByClassName('right-section')[0].offsetTop !== 0) {
+                    && document.getElementsByClassName('nav-icon')[4].offsetTop !== 0) {
                     document.getElementsByClassName('left-section')[0].style.marginTop = scroll + 'px';
                     document.getElementsByClassName('right-section')[0].style.marginTop = scroll + 'px';
                 }
