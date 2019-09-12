@@ -64,11 +64,8 @@ class ItemController extends Controller
         }
         $item->save();
 
-        try {
+//        try {
             $category = new Category($request->only(['seconder_type', 'location', 'exchangeable', 'used']));
-
-            if ($request->unlimited)
-                $category->unlimited = true;
 
             if (empty($request->base_type))
                 $category->base_type = 'other';
@@ -78,9 +75,9 @@ class ItemController extends Controller
             $category->item_id = $item->id;
 
             $category->save();
-        } catch (\Exception $e) {
-            $item->delete();
-        }
+//        } catch (\Exception $e) {
+//            $item->delete();
+//        }
 
         $item->category = $category;
         $item->likes_count = 0;

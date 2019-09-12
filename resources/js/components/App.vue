@@ -37,13 +37,17 @@
                  class="item-card flex-box">
 
                 <div class="item-left">
-                    <img :src="reConImage(activeImage)" class="item-image main-image">
+                    <img :src="item.images[0]" style="height: 246px" class="item-image main-image">
 
                     <div v-if="!singleItemMode" class="flex-box" style="width: 100%;">
-                        <div style="width: 8%;height: 64px" @click="changeImage(true)"><</div>
-                        <img v-for="(image,index) in item.images" v-if="index + activeImage < 3 + activeImage"
-                             style="width: 28%;height: 64px" :src="reConImage(index)" alt="">
-                        <div style="width: 8%;height: 64px" @click="changeImage(false)">></div>
+                        <!--<div style="width: 8%;height: 64px" @click="changeImage(true)"><</div>-->
+                        <img v-for="(image,index) in item.images" v-if="index < 3"
+                             style="width: 33%;height: 92px;object-fit: cover" :src="image">
+                        <!--<div style="width: 8%;height: 64px" @click="changeImage(false)">></div>-->
+                    </div>
+                    <div v-if="!singleItemMode" class="flex-box" style="width: 100%;">
+                        <img v-for="(image,index) in item.images" v-if="index >= 3"
+                             style="width: 33%;height: 92px;object-fit: cover" :src="image">
                     </div>
 
                     <div>

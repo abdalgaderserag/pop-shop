@@ -8,7 +8,7 @@ class Category extends Model
 {
 
     protected $fillable = [
-        'base_type', 'seconder_type', 'location', 'exchangeable', 'used', 'unlimited'
+        'base_type', 'seconder_type', 'location', 'exchangeable', 'used',
     ];
 
     protected $casts = [
