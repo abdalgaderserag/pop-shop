@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Bio;
 use App\Notifications\AddAvatarNotification;
 use App\Notifications\NewAccountNotification;
 use App\User;
@@ -16,9 +17,13 @@ class UserObserver
      */
     public function created(User $user)
     {
-        $user->notify(new NewAccountNotification());
-        if ($user->avatar == config('pop.def-avatar'))
-            $user->notify(new AddAvatarNotification());
+        $bio = new Bio();
+        $bio->user_id = $user->id;
+        $bio->avatar = config('pop.def-avatar');
+        $bio->save();
+//        $user->notify(new NewAccountNotification());
+//        if ($user->avatar == config('pop.def-avatar'))
+//            $user->notify(new AddAvatarNotification());
     }
 
     /**

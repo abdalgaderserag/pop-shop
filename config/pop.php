@@ -13,5 +13,5 @@ return [
 
     'perPage' => 25,
 
-    'def-avatar' => '/',
+    'def-avatar' => 'test/avatar.png',
 ];

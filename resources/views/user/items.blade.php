@@ -5,6 +5,7 @@
 @section('styles')
     <link rel="stylesheet" href="/css/shared/shared.css">
     <link rel="stylesheet" href="/css/parts/header.css">
+    <link rel="stylesheet" href="/css/items.css">
 @endsection
 
 @section('content')

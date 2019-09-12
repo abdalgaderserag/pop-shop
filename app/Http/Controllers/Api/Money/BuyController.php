@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Money;
 
 use App\Http\Controllers\Controller;
+use App\Item;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
 
@@ -31,5 +32,11 @@ class BuyController extends Controller
             ]);
 
         $data = json_decode((string)$response->getBody(), true);
+
+        $id = (int)$_GET['id'];
+
+        $item = Item::all()->where('id', $id)->first();
+        $item->stock = $item->stock - 1;
+        $item->save();
     }
 }

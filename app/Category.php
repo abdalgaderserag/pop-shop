@@ -7,9 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
 
+    protected $fillable = [
+        'base_type', 'seconder_type', 'location', 'exchangeable', 'used', 'unlimited'
+    ];
+
     protected $casts = [
         'exchangeable' => 'boolean',
-        'used' => 'boolean'
+        'used' => 'boolean',
+        'unlimited' => 'boolean',
     ];
 
     /**

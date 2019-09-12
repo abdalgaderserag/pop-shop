@@ -18,6 +18,7 @@ class ItemController extends Controller
      */
     public function index()
     {
+//        get the page number
         if (isset($_GET['page'])) {
             $page = (int)$_GET['page'];
         } else {
@@ -27,14 +28,16 @@ class ItemController extends Controller
         $perPage = config('pop.perPage');
 
 //        get the item with at lest one in stock
-        $items = Item::unless('stock', '==', 0)
-            ->with('user', 'category')
+        $items = Item::with('user', 'category')
             ->withCount('likes')
             ->orderBy('created_at', 'desc');
+
+//        number of pages available
         $data['pages'] = $items->count() / $perPage;
+//        paginate the items
         $data['items'] = $items->forPage($page, $perPage)->get();
 
-//        assign if the user like this
+//        assign if the authinticatied user like the item
         $i = 0;
         if (Auth::check())
             foreach ($data['items'] as $item) {
@@ -53,30 +56,29 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $item = new Item();
-        $item->title = $request->title;
-        $item->user_id = Auth::id();
-        $item->details = $request->details;
-        $item->budget = $request->budget;
-        $item->cents = $request->cents;
-        $item->images = $request->images;
-
-//        check if user enter the amount of item in stock
-        if ($request->filled('stock'))
-            $item->stock = $request->stock;
+        $item = new Item($request->only(['title', 'details', 'budget', 'cents', 'images']));
+        $item->user_id = 1;
+        if (!$request->unlimited) {
+            if ($request->stock == null)
+                $item->stock = 1;
+        }
         $item->save();
 
         try {
-//        create new category to the user
-            $category = new Category();
+            $category = new Category($request->only(['seconder_type', 'location', 'exchangeable', 'used']));
+
+            if ($request->unlimited)
+                $category->unlimited = true;
+
+            if (empty($request->base_type))
+                $category->base_type = 'other';
+            else
+                $category->base_type = $request->base_type;
+
             $category->item_id = $item->id;
-            $category->base_type = $request->base_type;
-            $category->seconder_type = $request->seconder_type;
-            $category->location = $request->location;
-            $category->exchangeable = $request->exchangeable == 'true' ? true : false;
-            $category->used = $request->used == 'true' ? true : false;
+
             $category->save();
-        } catch (\Exception $err) {
+        } catch (\Exception $e) {
             $item->delete();
         }
 

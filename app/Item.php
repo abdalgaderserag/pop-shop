@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
 
-    protected $hidden = [
-        'cents'
+    protected $fillable = [
+        'title', 'details', 'budget', 'cents', 'images', 'stock',
     ];
+
+//    protected $hidden = [
+//        'cents'
+//    ];
 
     protected $casts = [
         'images' => 'array',
@@ -18,7 +22,7 @@ class Item extends Model
 
     public function getStockAttribute($value)
     {
-        if ($value == null)
+        if ($value === null)
             return 'unlimited';
         return $value;
     }

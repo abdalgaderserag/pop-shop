@@ -16,7 +16,7 @@ class CreateBiosTable extends Migration
         Schema::create('bios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('user_id');
-            $table->string('avatar')->default(config('pop.def-avatar'));
+            $table->string('avatar');
             $table->text('about')->nullable();
             $table->string('location')->nullable();
             $table->boolean('payment_verified')->default(false);

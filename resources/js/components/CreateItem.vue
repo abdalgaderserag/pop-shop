@@ -2,86 +2,81 @@
     <div class="flex-box" style="margin: 0 20%">
         <div class="main-section" style="width: 100%">
             <!--<div>Create Item:</div>-->
-            <form v-if="!isCalled" action="#" method="get" @submit="save">
-                <div>
-                    <div>item title<span class="red">*</span></div>
-                    <input class="input-text" type="text" placeholder="the name of your item and type" v-model="title"
-                           required>
+            <!--<form v-if="!isCalled" action="#" method="get" @submit="save">-->
+            <div v-if="!isCalled">
+                <div>item title<span class="red">*</span></div>
+                <input class="input-text" type="text" placeholder="the name of your item and type" v-model="title"
+                       required>
 
-                    <br><br>
-                    <div>budget<span class="red">*</span></div>
-                    <input class="input-text small-input" style="width: 50%" placeholder="cost in dollars"
-                           v-model="cost" type="number"
-                           required>
-                    <span>.</span>
-                    <input class="input-text small-input" placeholder="cents" v-model="cents" style="margin: 0;"
-                           type="number">
+                <br><br>
+                <div>budget<span class="red">*</span></div>
+                <input class="input-text small-input" style="width: 50%" placeholder="cost in dollars"
+                       v-model="cost" type="number"
+                       required>
+                <span>.</span>
+                <input class="input-text small-input" placeholder="cents" v-model="cents" style="margin: 0;"
+                       type="number">
 
-                    <br><br>
-                    <div>details<span class="red">*</span></div>
-                    <textarea style="min-width: 90%;max-width: 90%;min-height: 124px" class="input-text"
-                              v-model="details"
-                              placeholder="tell the users about you item the perform and other stuff about the item."
-                              required>
+                <br><br>
+                <div>details<span class="red">*</span></div>
+                <textarea style="min-width: 90%;max-width: 90%;min-height: 124px" class="input-text"
+                          v-model="details"
+                          placeholder="tell the users about you item the perform and other stuff about the item."
+                          required>
                 </textarea>
 
-                    <br><br>
-                    <div>amount</div>
-                    <span @click="checkit(2)" style="cursor: pointer">unlimited</span>
-                    <div class="check">
-                        <div v-show="checks[2].status" class="checked" @click="checkit(2)"></div>
-                    </div>
-
-                    <br>
-                    <input placeholder="the amount of the item in stock" v-show="!checks[2].status" v-model="stock"
-                           class="input-text" type="text">
-
-                    <br><br>
-                    <div>category<span class="red">*</span></div>
-                    <!--<input class="input-text small-input" type="text" required>-->
-                    <select v-model="base" class="input-text" style="width: 38%">
-                        <option>other</option>
-                        <option>cars</option>
-                    </select>
-                    <span>/</span>
-                    <select v-model="second" class="input-text" style="width: 38%;margin: 0">
-                        <option>other</option>
-                        <option>cars</option>
-                    </select>
-                    <!--<input class="input-text small-input" style="margin: 0;" type="text" required>-->
-
-                    <br><br>
-                    <div>Location<span class="red">*</span></div>
-                    <input class="input-text" v-model="location" placeholder="where the item will delivered" type="text"
-                           required>
-
-                    <br><br>
-                    <span @click="checkit(1)" style="cursor: pointer;">Exchangeable</span>
-                    <div @click="checkit(1)" class="check">
-                        <div v-show="checks[1].status" class="checked"></div>
-                    </div>
-
-                    <br><br>
-                    <span @click="checkit(0)" style="cursor: pointer;">Used</span>
-                    <div @click="checkit(0)" class="check">
-                        <div v-show="checks[0].status" class="checked"></div>
-                    </div>
-
-                    <br><br>
-                    <div>Images<span class="red">*</span></div>
-                    <br><br>
-                    <div class="flex-box" style="flex-wrap: wrap;justify-content: center">
-                        <div v-for="(image,index) in images" v-if="index < 6" class="input-text image-h-upload"
-                             @click="uploadImage">
-                            <input type="file" class="file-input">
-                            <img :name="index" class="add-image" :src="image.url" alt="">
-                        </div>
-                    </div>
-
-                    <br>
-                    <button class="input-button" style="width: 100%">SAVE</button>
+                <br><br>
+                <div>amount</div>
+                <span @click="checkit(2)" style="cursor: pointer">unlimited</span>
+                <div class="check">
+                    <div v-show="checks[2].status" class="checked" @click="checkit(2)"></div>
                 </div>
-            </form>
+
+                <br>
+                <input placeholder="the amount of the item in stock" v-show="!checks[2].status" v-model="stock"
+                       class="input-text" type="text">
+
+                <br><br>
+                <div>category<span class="red">*</span></div>
+                <!--<input class="input-text small-input" type="text" required>-->
+                <select v-model="base" class="input-text" style="width: 38%">
+                    <option v-for="cat in category">{{ cat }}</option>
+                </select>
+                <span>/</span>
+                <input class="input-text small-input" style="margin: 0;width: 35%;" type="text" required>
+
+                <br><br>
+                <div>Location<span class="red">*</span></div>
+                <input class="input-text" v-model="location" placeholder="where the item will delivered" type="text"
+                       required>
+
+                <br><br>
+                <span @click="checkit(1)" style="cursor: pointer;">Exchangeable</span>
+                <div @click="checkit(1)" class="check">
+                    <div v-show="checks[1].status" class="checked"></div>
+                </div>
+
+                <br><br>
+                <span @click="checkit(0)" style="cursor: pointer;">Used</span>
+                <div @click="checkit(0)" class="check">
+                    <div v-show="checks[0].status" class="checked"></div>
+                </div>
+
+                <br><br>
+                <div>Images<span class="red">*</span></div>
+                <br><br>
+                <div class="flex-box" style="flex-wrap: wrap;justify-content: center">
+                    <div v-for="(image,index) in images" v-if="index < 6" class="input-text image-h-upload"
+                         @click="uploadImage">
+                        <input type="file" class="file-input">
+                        <img :name="index" class="add-image" :src="image.url" alt="">
+                    </div>
+                </div>
+
+                <br>
+                <button class="input-button" style="width: 100%" @click="save">SAVE</button>
+            </div>
+            <!--</form>-->
             <div v-else>
                 <div class="item-card flex-box">
                     <div class="item-left">
@@ -96,32 +91,21 @@
                             <div style="width: 100%;">
                                 <div class="flex-box item-title">
                                     <div>{{ item.title }}</div>
-                                    <div class="flex-box"
+                                    <!--<div class="flex-box"
                                          style="width: 24px;flex-direction: row-reverse"
                                          v-html="'<div style=\'width: 24px\'>'+hart+'</div><div class=\'box-shadowed\'>2M</div>'">
-                                    </div>
+                                    </div>-->
                                 </div>
                                 <span> - {{ '$' + item.budget }}</span>
                             </div>
                         </div>
-                        <div v-if="!singleItemMode" class="item-text">
-                            <button class="input-button" style="width: 26%;border-width:0;margin-bottom: 16px;"
-                                    @click="authorize()">Buy
-                            </button>
-                        </div>
-                        <div v-if="!singleItemMode" class="item-text">
+                        <div class="item-text">
                             <div style="font-size: 2.4vh">{{ item.details }}</div>
                         </div>
                         <div class="item-text"><span>Location :</span>
                             <span>{{ item.category.location }}</span></div>
                         <div class="item-text"><span>Category :</span>
                             <span> {{item.category.base_type}} / {{ item.category.seconder_type }}</span></div>
-
-                        <div class="item-text"><span>By</span>
-                            <a :href="'/profile/' + item.user.id"
-                               style="background: #fff;border-radius: 16px;box-shadow: 0 1px 4px #cbc8c8;padding: 8px 8px 0 8px;margin: 0 0 0 10px;"
-                               class="link-clear" @click="preventIt()">{{item.user.name }}</a>
-                        </div>
 
                         <div v-if="item.stock != 'unlimited'" class="item-text">
                             only <span>{{ item.stock }}</span> in stock
@@ -153,14 +137,15 @@
         name: "CreateItem",
         data() {
             return {
+                category: [],
 
                 // inputs
-                title: '',
-                cost: '',
-                cents: '',
-                details: '',
-                stock: '',
-                location: '',
+                title: 'j5',
+                cost: '7000',
+                cents: '50',
+                details: 'as dlas djas dkslk hdaskjh adk jsdh lkash lkd k.asjd. asj.l',
+                stock: '1',
+                location: 'asdaksld. ',
                 base: 'Other',
                 second: 'Other',
                 checks: [
@@ -179,6 +164,18 @@
                 ],
                 images: [
                     {
+                        url: 'storage/items/image/0b3c4ec4-3f98-32dc-aa22-206d7174e9fd.jpeg',
+                    },
+                    {
+                        url: 'storage/items/image/0c2fff07-e52d-3664-9da6-a32cffc40926.jpeg',
+                    },
+                    {
+                        url: 'storage/items/image/4db8ca96-65fc-39ef-8f63-0a83b426381a.jpeg',
+                    },
+                    {
+                        url: 'storage/items/image/5b7dd1dd-0160-3732-9b40-4c44d766041f.jpeg',
+                    },
+                    {
                         url: '',
                     },
                 ],
@@ -187,6 +184,9 @@
                 isCalled: false,
                 item: {},
             }
+        },
+        mounted() {
+            this.getCategory();
         },
         methods: {
             uploadImage: function (event) {
@@ -245,7 +245,7 @@
             save: function (e) {
                 let images = [];
                 for (let i = 0; i < this.images.length - 1; i++) {
-                    images[i] = this.images[i];
+                    images[i] = this.images[i].url;
                 }
 
                 /*
@@ -272,18 +272,19 @@
                 let data = {
                     title: this.title,
                     details: this.details,
-                    budget: this.budget,
+                    budget: this.cost,
                     cents: this.cents,
                     images: images,
                     stock: this.stock,
                     base_type: this.base,
                     seconder_type: this.second,
+                    location: this.location,
                     exchangeable: this.checks[0].status,
                     used: this.checks[1].status,
                     unlimited: this.checks[2].status,
                 };
 
-                if (data.images.length > 4) {
+                if (data.images.length >= 4) {
                     axios.post('/api/item', data)
                         .then((response) => {
                             this.item = response.data;
@@ -298,13 +299,19 @@
                             for (let i = 0; i < this.checks.length; i++)
                                 this.checks[i].status = false;
 
-                            for (let i = 0; i < this.images.length; i++)
-                                images.pop();
+                            this.images = [];
+
                             this.images.push({
                                 url: '',
                             });
+                            this.isCalled = true;
                         });
                 }
+            },
+            getCategory: function () {
+                axios.get('/test/category.json').then(response => {
+                    this.category = response.data.category;
+                })
             }
         }
     }
