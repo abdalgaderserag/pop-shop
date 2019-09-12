@@ -45,7 +45,9 @@ class UserObserver
      */
     public function deleted(User $user)
     {
-        //
+        $user->bio()->delete();
+        foreach ($user->items as $item)
+            $item->delete();
     }
 
     /**

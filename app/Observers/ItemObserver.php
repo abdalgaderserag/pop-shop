@@ -18,7 +18,7 @@ class ItemObserver
     public function created(Item $item)
     {
         $user = $item->user()->dissociate();
-        $user->notify(new NewItem($item));
+//        $user->notify(new NewItem($item));
     }
 
     /**
@@ -29,11 +29,11 @@ class ItemObserver
      */
     public function updated(Item $item)
     {
-        $inCarts = Cart::all()->where('item_id', $item->id);
-        foreach ($inCarts as $cart) {
-            $user = $cart->user()->dissociate();
-            $user->notify(new UpdatedItem($item));
-        }
+//        $inCarts = Cart::all()->where('item_id', $item->id);
+//        foreach ($inCarts as $cart) {
+//            $user = $cart->user()->dissociate();
+//            $user->notify(new UpdatedItem($item));
+//        }
     }
 
     /**
@@ -45,8 +45,8 @@ class ItemObserver
     public function deleted(Item $item)
     {
         $item->category()->delete();
-        foreach ($item->likes as $like)
-            $like->delete();
+//        foreach ($item->likes as $like)
+//            $like->delete();
     }
 
     /**
