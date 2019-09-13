@@ -8,6 +8,7 @@
   box-shadow: 0 1px 5px -2px $black;
   margin: 0 0 42px 0;
   position: fixed;
+  z-index: 11;
 
   .nav-main {
     width: $main-width;

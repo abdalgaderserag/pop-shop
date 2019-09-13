@@ -2,10 +2,10 @@
     <div class="flex-box" style="justify-content: center">
 
         <!--<div class="flex-box" style="top:0;position: fixed;width: 100%;height: 100%">-->
-            <!--set it to main page width height-->
-            <div class="toast" style="width: 100%;position: fixed;bottom: 20px;text-align: center">
-                <div>press ESC to return to main page</div>
-            </div>
+        <!--set it to main page width height-->
+        <div id="toast">
+            <span>{{ message }}</span>
+        </div>
         <!--</div>-->
 
         <filters v-show="singleItemMode"></filters>
@@ -148,6 +148,8 @@
                 pages: 0,
 
                 preventDefault: false,
+
+                message: 'press ESC to return to main page'
             }
         },
         mounted() {
@@ -167,6 +169,7 @@
                 let scroll = window.scrollY;
                 if (scroll < document.getElementsByClassName('pagination')[0].offsetTop - (window.innerHeight)
                     && document.getElementsByClassName('nav-icon')[4].offsetTop !== 0) {
+                    this.message = 'press back button to return';
                     document.getElementsByClassName('left-section')[0].style.marginTop = scroll + 'px';
                     document.getElementsByClassName('right-section')[0].style.marginTop = scroll + 'px';
                 }
@@ -233,12 +236,17 @@
                 let body = item.getElementsByClassName('item-body')[0];
                 left.style.width = '30%';
                 body.style.width = '68%';
+                document.getElementById('toast').style.bottom = '32px';
+                setTimeout(function () {
+                    document.getElementById('toast').style.bottom = '-64px';
+                }, 2200);
             },
             normalMode: function () {
                 this.displayItem();
                 this.activeImage = 0;
                 document.getElementsByClassName('main-section')[0].style.width = '60%';
                 this.singleItemMode = true;
+                document.getElementById('toast').style.bottom = '-64px';
                 setTimeout(() => {
                     // this.singleItemMode = true;
                     let items = document.getElementsByClassName('item-card');
@@ -247,18 +255,6 @@
                     }
                     window.scrollTo(0, this.screenLocation);
                 }, 500);
-            },
-            reConImage: function (index) {
-                while (index > 3) {
-                    index -= 3;
-                }
-                return this.items[this.activeItem].images[index];
-            },
-            changeImage: function (type) {
-                this.activeImage += type ? 1 : -1;
-                if (this.activeImage >= this.items[this.activeItem].images.length || this.activeImage < 0) {
-                    this.activeImage += type ? -1 : 1;
-                }
             },
             authorize: function () {
                 window.location.href = 'http://127.0.0.1:8000/redirect';
@@ -287,6 +283,21 @@
         height: 12px;
         transform: rotate(45deg);
         margin: 6px 0 0 12px;
+    }
+
+    #toast {
+        width: 100%;
+        position: fixed;
+        bottom: -64px;
+        text-align: center;
+        transition: bottom, 500ms;
+    }
+
+    #toast span {
+        background: #f44336;
+        color: white;
+        padding: 8px 15px 5px 15px;
+        border-radius: 18px;
     }
 
     .box-shadowed {
