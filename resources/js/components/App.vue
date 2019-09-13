@@ -170,10 +170,15 @@
                 if (scroll < document.getElementsByClassName('pagination')[0].offsetTop - (window.innerHeight)
                     && document.getElementsByClassName('nav-icon')[4].offsetTop !== 0) {
                     this.message = 'press back button to return';
-                    document.getElementsByClassName('left-section')[0].style.marginTop = scroll + 'px';
-                    document.getElementsByClassName('right-section')[0].style.marginTop = scroll + 'px';
                 }
 
+                if (scroll > document.getElementsByClassName('pagination')[0].offsetTop - (window.innerHeight)) {
+                    document.getElementsByClassName('left-section')[0].style.position = 'absolute';
+                    document.getElementsByClassName('right-section')[0].style.position = 'absolute';
+                } else {
+                    document.getElementsByClassName('left-section')[0].style.position = '';
+                    document.getElementsByClassName('right-section')[0].style.position = '';
+                }
             }
         },
 
