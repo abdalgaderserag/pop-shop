@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Faker\Factory;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -32,7 +34,6 @@ class RegisterController extends Controller
     protected $redirectTo = '/profile';
 
 
-
     /**
      * Get a validator for an incoming registration request.
      *
@@ -42,6 +43,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+//            'slug' => ['required', 'string', 'unique:users'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -57,6 +59,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'slug' => Factory::create()->uuid,
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

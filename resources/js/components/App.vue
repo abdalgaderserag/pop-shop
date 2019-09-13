@@ -1,14 +1,21 @@
 <template>
     <div class="flex-box" style="justify-content: center">
 
+        <!--<div class="flex-box" style="top:0;position: fixed;width: 100%;height: 100%">-->
+            <!--set it to main page width height-->
+            <div class="toast" style="width: 100%;position: fixed;bottom: 20px;text-align: center">
+                <div>press ESC to return to main page</div>
+            </div>
+        <!--</div>-->
+
         <filters v-show="singleItemMode"></filters>
 
         <div class="main-section">
 
             <!-- header of the list -->
             <div class="card-header flex-box">
-                <div v-show="!singleItemMode" style="margin-right:20px;cursor:pointer;"
-                     @click="normalMode"><
+                <div v-show="!singleItemMode" class="back" @click="normalMode">
+                    <img src="/site/arrow.svg">
                 </div>
                 <div>Items</div>
             </div>
@@ -264,6 +271,24 @@
 </script>
 
 <style>
+    .back {
+        margin: -2px 8px 0 0;
+        cursor: pointer;
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+    }
+
+    .back:hover {
+        box-shadow: inset 0 0 4px 0 #b2b2b2;
+    }
+
+    .back img {
+        height: 12px;
+        transform: rotate(45deg);
+        margin: 6px 0 0 12px;
+    }
+
     .box-shadowed {
         height: 23px;
         width: max-content;
