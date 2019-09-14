@@ -141,13 +141,13 @@
 
                 // inputs
                 title: '',
-                cost: '7000',
-                cents: '50',
-                details: 'as dlas djas dkslk hdaskjh adk jsdh lkash lkd k.asjd. asj.l',
-                stock: '1',
-                location: 'asdaksld. ',
-                base: 'Other',
-                second: 'Other',
+                cost: '',
+                cents: '',
+                details: '',
+                stock: '',
+                location: '',
+                base: '',
+                second: '',
                 checks: [
                     {
                         name: 'Exchangeable',
@@ -163,18 +163,6 @@
                     },
                 ],
                 images: [
-                    {
-                        url: 'storage/items/image/0b3c4ec4-3f98-32dc-aa22-206d7174e9fd.jpeg',
-                    },
-                    {
-                        url: 'storage/items/image/0c2fff07-e52d-3664-9da6-a32cffc40926.jpeg',
-                    },
-                    {
-                        url: 'storage/items/image/4db8ca96-65fc-39ef-8f63-0a83b426381a.jpeg',
-                    },
-                    {
-                        url: 'storage/items/image/5b7dd1dd-0160-3732-9b40-4c44d766041f.jpeg',
-                    },
                     {
                         url: '',
                     },

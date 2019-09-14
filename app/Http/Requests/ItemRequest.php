@@ -28,8 +28,8 @@ class ItemRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'min:2', 'max:255'],
             'details' => ['required', 'string', 'min:25', 'max:511'],
-            'budget' => ['required', 'Numeric'],
-            'cents' => ['required', 'Numeric'],
+            'budget' => ['required', 'Numeric', 'min:1'],
+            'cents' => ['required', 'Numeric', 'min:1', 'max:99'],
             'images' => ['required', 'array', 'min:4', 'max:6', new ImagesUploaded()],
             'stock' => ['Numeric', 'max:255'],
             'base_type' => ['required', 'string', new CategoryExsist()],

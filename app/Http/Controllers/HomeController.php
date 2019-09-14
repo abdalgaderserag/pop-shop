@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ClearTempSpace;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -23,7 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('user.dashboard');
+        ClearTempSpace::dispatch();
+        return Storage::disk('public')->allDirectories('storage/items/image/');
+//        return view('user.dashboard');
     }
 
     /**
