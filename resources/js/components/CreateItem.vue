@@ -140,7 +140,7 @@
                 category: [],
 
                 // inputs
-                title: 'j5',
+                title: '',
                 cost: '7000',
                 cents: '50',
                 details: 'as dlas djas dkslk hdaskjh adk jsdh lkash lkd k.asjd. asj.l',
@@ -248,27 +248,6 @@
                     images[i] = this.images[i].url;
                 }
 
-                /*
-                let data = [
-                    this.title,
-                    this.details,
-                    this.budget,
-                    this.cents,
-                    images,
-                    this.stock,
-                    this.base,
-                    this.second,
-                    this.checks[0].status,
-                    this.checks[1].status,
-                    this.checks[2].status,
-                ];
-
-                let url ="?";
-                for (let i = 0; i < data.length; i++) {
-
-                }
-                */
-
                 let data = {
                     title: this.title,
                     details: this.details,
@@ -306,6 +285,7 @@
                             });
                             this.isCalled = true;
                         });
+                    // TODO : add the function after the validation failed
                 }
             },
             getCategory: function () {

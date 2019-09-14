@@ -1,9 +1,15 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/shared/shared.css": "/css/shared/shared.css",
-    "/css/parts/header.css": "/css/parts/header.css",
-    "/css/parts/footer.css": "/css/parts/footer.css",
-    "/css/profile/item-view.css": "/css/profile/item-view.css",
-    "/css/log/log.css": "/css/log/log.css",
-    "/css/items.css": "/css/items.css"
+    "/css/style/shared/shared.css": "/css/style/shared/shared.css",
+    "/css/style/parts/header.css": "/css/style/parts/header.css",
+    "/css/style/parts/footer.css": "/css/style/parts/footer.css",
+    "/css/style/profile/item-view.css": "/css/style/profile/item-view.css",
+    "/css/style/log/log.css": "/css/style/log/log.css",
+    "/css/style/items.css": "/css/style/items.css",
+    "/css/dark/shared/shared.css": "/css/dark/shared/shared.css",
+    "/css/dark/parts/header.css": "/css/dark/parts/header.css",
+    "/css/dark/parts/footer.css": "/css/dark/parts/footer.css",
+    "/css/dark/profile/item-view.css": "/css/dark/profile/item-view.css",
+    "/css/dark/log/log.css": "/css/dark/log/log.css",
+    "/css/dark/items.css": "/css/dark/items.css"
 }

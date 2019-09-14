@@ -1,9 +1,15 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" href="/css/shared/shared.css">
-    <link rel="stylesheet" href="/css/parts/header.css">
-    <link rel="stylesheet" href="/css/log/log.css">
+    @auth
+        <link rel="stylesheet" href="/css/{{ \Illuminate\Support\Facades\Auth::user()->bio->type }}/shared/shared.css">
+        <link rel="stylesheet" href="/css/{{ \Illuminate\Support\Facades\Auth::user()->bio->type }}/parts/header.css">
+        <link rel="stylesheet" href="/css/{{ \Illuminate\Support\Facades\Auth::user()->bio->type }}/log/log.css">
+    @else
+        <link rel="stylesheet" href="/css/style/shared/shared.css">
+        <link rel="stylesheet" href="/css/style/parts/header.css">
+        <link rel="stylesheet" href="/css/style/log/log.css">
+    @endauth
 @endsection
 
 @section('content')

@@ -1,0 +1,90 @@
+// Variable
+@import "variables";
+
+.nav-bar {
+  width: $full;
+  background-color: $white;
+  font-size: 2.5vh;
+  box-shadow: 0 1px 5px -2px $darkest;
+  margin: 0 0 42px 0;
+  position: fixed;
+  z-index: 11;
+
+  .nav-main {
+    width: $main-width;
+    height: 54px;
+    margin: 0 0 0 (($full - $main-width)/2);
+    padding: 6px 0 0 0;
+    justify-content: space-between;
+
+    .nav-group {
+      width: 50%;
+
+      .nav-item {
+        padding: 10px 0 0 6px;
+        color: $gray;
+
+        .notification-icon {
+          width: 20px;
+          padding: 4px 0 0 0;
+        }
+
+        .nav-avatar {
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          margin: -3px 0 0 0;
+        }
+
+
+        .nav-link {
+          font-family: Helvetica;
+          font-size: 1.8vh
+        }
+      }
+
+      .nav-title {
+        .nav-link {
+          font-family: $font-family-base-2;
+          font-size: 3vh;
+          margin-right: 20px;
+          color: $black;
+        }
+      }
+    }
+
+    .nav-group:last-child {
+      justify-content: flex-end;
+    }
+  }
+}
+
+
+@media only screen and (min-width: 960px) {
+}
+
+@media only screen and (max-device-width: 960px) {
+  .nav-bar .nav-main {
+    height: auto;
+  }
+  .nav-bar .nav-main .nav-group:first-child {
+    flex-direction: column;
+    .nav-icon {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+  .nav-bar .nav-main {
+    width: 90%;
+    margin-left: 5%;
+    height: auto;
+  }
+  .nav-icon {
+    display: none;
+  }
+  .nav-bar .nav-main .nav-group:first-child {
+    flex-direction: column;
+  }
+}

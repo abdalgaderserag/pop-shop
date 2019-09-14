@@ -3,9 +3,9 @@
 @section('title',\Illuminate\Support\Facades\Auth::user()->name . ' | items')
 
 @section('styles')
-    <link rel="stylesheet" href="/css/shared/shared.css">
-    <link rel="stylesheet" href="/css/parts/header.css">
-    <link rel="stylesheet" href="/css/items.css">
+    <link rel="stylesheet" href="/css/{{ \Illuminate\Support\Facades\Auth::user()->bio->type }}/shared/shared.css">
+    <link rel="stylesheet" href="/css/{{ \Illuminate\Support\Facades\Auth::user()->bio->type }}/parts/header.css">
+    <link rel="stylesheet" href="/css/{{ \Illuminate\Support\Facades\Auth::user()->bio->type }}/items.css">
 @endsection
 
 @section('content')

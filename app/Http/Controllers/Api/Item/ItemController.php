@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Item;
 
 use App\Category;
+use App\Http\Requests\ItemRequest;
 use App\Item;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -54,7 +55,7 @@ class ItemController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ItemRequest $request)
     {
         $item = new Item($request->only(['title', 'details', 'budget', 'cents', 'images']));
         $item->user_id = 1;

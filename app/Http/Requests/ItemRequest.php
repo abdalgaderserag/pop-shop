@@ -26,12 +26,12 @@ class ItemRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'string', 'min:8', 'max:255'],
-            'details' => ['required', 'string', 'min:125', 'max:511'],
-            'budget' => ['required', 'number'],
-            'cents' => ['required', 'number'],
+            'title' => ['required', 'string', 'min:2', 'max:255'],
+            'details' => ['required', 'string', 'min:25', 'max:511'],
+            'budget' => ['required', 'Numeric'],
+            'cents' => ['required', 'Numeric'],
             'images' => ['required', 'array', 'min:4', 'max:6', new ImagesUploaded()],
-            'stock' => ['number', 'max:255'],
+            'stock' => ['Numeric', 'max:255'],
             'base_type' => ['required', 'string', new CategoryExsist()],
             'seconder_type' => ['required', 'string', 'min:3', 'max:255'],
             'location' => ['required', 'string', 'min:6', 'max:255'],

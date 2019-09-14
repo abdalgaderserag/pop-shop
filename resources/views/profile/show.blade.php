@@ -6,9 +6,16 @@ $Auth = $user->id == \Illuminate\Support\Facades\Auth::id();
 @section('title',$user->name . ' | Profile')
 
 @section('styles')
-    <link rel="stylesheet" href="/css/shared/shared.css">
-    <link rel="stylesheet" href="/css/parts/header.css">
-    <link rel="stylesheet" href="/css/profile/item-view.css">
+    @auth
+        <link rel="stylesheet" href="/css/{{ \Illuminate\Support\Facades\Auth::user()->bio->type }}/shared/shared.css">
+        <link rel="stylesheet" href="/css/{{ \Illuminate\Support\Facades\Auth::user()->bio->type }}/parts/header.css">
+        <link rel="stylesheet"
+              href="/css/{{ \Illuminate\Support\Facades\Auth::user()->bio->type }}/profile/item-view.css">
+    @else
+        <link rel="stylesheet" href="/css/style/shared/shared.css">
+        <link rel="stylesheet" href="/css/style/parts/header.css">
+        <link rel="stylesheet" href="/css/style/profile/item-view.css">
+    @endauth
 @endsection
 
 @section('content')
