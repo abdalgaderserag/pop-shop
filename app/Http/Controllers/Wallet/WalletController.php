@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Wallet;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class WalletController extends Controller
 {
@@ -42,25 +44,31 @@ class WalletController extends Controller
 
         $data = json_decode((string)$response->getBody(), true);
 
-        \Illuminate\Support\Facades\Session::put('access_token', $data['access_token']);
+        Session::put('access_token', $data['access_token']);
 
         return redirect('/');
     }
 
-    public function getRequest()
+    public function addPayment()
     {
-        $http = new Client();
-        $response = $http->post(config('pop.sites.c-pay.url') . '/oauth/token',
-            [
-                'form_params' => [
-                    'grant_type' => 'authorization_code',
-                    'client_id' => 4,
-                    'client_secret' => 'TliPFUIYq6Ot7w7KusGFQkjmYM2QXRQPA5sqhw7b',
-                    'redirect_uri' => 'http://127.0.0.1:8000/callback',
-                ]
-            ]);
+        if (Session::has('access_token'))
+            return redirect('');
 
-        $data = json_decode((string)$response->getBody(), true);
-        return response()->json($data);
+        $query = http_build_query([
+            'client_id' => config('pop.sites.c-pay.client_id') + 1,
+            'redirect_uri' => url('/') . '/save/payment',
+            'response_type' => 'code',
+            'scope' => '',
+        ]);
+
+        return redirect('http://127.0.0.1:9000/oauth/authorize?' . $query);
+    }
+
+    public function savePayment(Request $request)
+    {
+        $bio = Auth::user()->bio;
+        $bio->payment_code = $request->code;
+        $bio->save();
+        return redirect('/profile');
     }
 }
