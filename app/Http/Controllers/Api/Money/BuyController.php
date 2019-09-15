@@ -21,17 +21,16 @@ class BuyController extends Controller
 
         $http = new Client();
 
-        $response = $http->post('http://127.0.0.1:9000/oauth/token',
+        $response = $http->post(config('pop.sites.c-pay.url') . '/transfer',
             [
-                'form_params' => [
-                ],
-//                todo: add the headers
                 'headers' => [
-
+                    'Authorization' => "Bearer " . Session::get('access_token'),
+                    'Content-Type' => "*"
                 ]
             ]);
 
         $data = json_decode((string)$response->getBody(), true);
+
 
         $id = (int)$_GET['id'];
 

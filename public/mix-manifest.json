@@ -5,11 +5,5 @@
     "/css/style/parts/footer.css": "/css/style/parts/footer.css",
     "/css/style/profile/item-view.css": "/css/style/profile/item-view.css",
     "/css/style/log/log.css": "/css/style/log/log.css",
-    "/css/style/items.css": "/css/style/items.css",
-    "/css/dark/shared/shared.css": "/css/dark/shared/shared.css",
-    "/css/dark/parts/header.css": "/css/dark/parts/header.css",
-    "/css/dark/parts/footer.css": "/css/dark/parts/footer.css",
-    "/css/dark/profile/item-view.css": "/css/dark/profile/item-view.css",
-    "/css/dark/log/log.css": "/css/dark/log/log.css",
-    "/css/dark/items.css": "/css/dark/items.css"
+    "/css/style/items.css": "/css/style/items.css"
 }

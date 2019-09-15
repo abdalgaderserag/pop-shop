@@ -186,7 +186,7 @@ body {
     width: 100%;
     order: 0;
     position: static;
-    margin-bottom: 24px;
+    margin: 24px 0;
   }
 
   .right-section {
@@ -194,6 +194,7 @@ body {
   }
 
   .main-section {
+    margin: 0;
     order: 2;
     width: 100%;
 

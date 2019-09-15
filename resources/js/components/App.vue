@@ -91,7 +91,7 @@
                         <span> {{item.category.base_type}} / {{ item.category.seconder_type }}</span></div>
 
                     <div class="item-text"><span>By</span>
-                        <a :href="'/profile/' + item.user.id"
+                        <a :href="'/profile/' + item.user.slug"
                            style="background: #fff;border-radius: 16px;box-shadow: 0 1px 4px #cbc8c8;padding: 8px 8px 0 8px;margin: 0 0 0 10px;"
                            class="link-clear" @click="preventIt()">{{item.user.name }}</a>
                     </div>
@@ -149,7 +149,7 @@
 
                 preventDefault: false,
 
-                message: 'press ESC to return to main page'
+                message: 'Press ESC to return to main page'
             }
         },
         mounted() {
@@ -169,7 +169,8 @@
                 let scroll = window.scrollY;
                 if (scroll < document.getElementsByClassName('pagination')[0].offsetTop - (window.innerHeight)
                     && document.getElementsByClassName('nav-icon')[4].offsetTop !== 0) {
-                    this.message = 'press back button to return';
+                } else {
+                    this.message = 'Press back button to return';
                 }
 
                 if (scroll > document.getElementsByClassName('pagination')[0].offsetTop - (window.innerHeight)) {
@@ -222,6 +223,9 @@
                             window.location.href += 'item/' + item.id;
                             return;
                         }
+                        if (document.getElementsByClassName('nav-icon')[4].offsetTop == 0) {
+                            main.style.marginLeft = '0%';
+                        }
                         main.style.width = '100%';
                         this.activeItem = index;
                         this.singleItemMode = false;
@@ -252,6 +256,10 @@
                 document.getElementsByClassName('main-section')[0].style.width = '60%';
                 this.singleItemMode = true;
                 document.getElementById('toast').style.bottom = '-64px';
+                if (document.getElementsByClassName('nav-icon')[4].offsetTop == 0) {
+                    document.getElementsByClassName('main-section')[0].style.marginLeft = '25%';
+                    document.getElementsByClassName('main-section')[0].style.width = '75%';
+                }
                 setTimeout(() => {
                     // this.singleItemMode = true;
                     let items = document.getElementsByClassName('item-card');

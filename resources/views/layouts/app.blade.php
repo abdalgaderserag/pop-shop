@@ -24,14 +24,17 @@
     @include('layouts.parts.footer')
 </div>
 <script src="/js/app.js"></script>
-{{--<script>
+<script>
+
+    window.wallet.defaults.headers.common['Authorization'] = 'Bearer {{ \Illuminate\Support\Facades\Session::get('access_token') }}';
+
     let app = new Vue({
         el: '#app',
         data: {
             hart: '<3',
         },
     });
-</script>--}}
+</script>
 
 </body>
 </html>

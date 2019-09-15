@@ -37,7 +37,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::where('slug', $id)->first();
         return view('profile.show')->with(['user' => $user]);
     }
 
