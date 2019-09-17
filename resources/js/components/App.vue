@@ -167,18 +167,21 @@
             });
             document.onscroll = (e) => {
                 let scroll = window.scrollY;
-                if (scroll < document.getElementsByClassName('pagination')[0].offsetTop - (window.innerHeight)
-                    && document.getElementsByClassName('nav-icon')[4].offsetTop !== 0) {
-                } else {
-                    this.message = 'Press back button to return';
-                }
+                try {
+                    if (scroll < document.getElementsByClassName('pagination')[0].offsetTop - (window.innerHeight)
+                        && document.getElementsByClassName('nav-icon')[4].offsetTop !== 0) {
+                    } else {
+                        this.message = 'Press back button to return';
+                    }
 
-                if (scroll > document.getElementsByClassName('pagination')[0].offsetTop - (window.innerHeight)) {
-                    document.getElementsByClassName('left-section')[0].style.position = 'absolute';
-                    document.getElementsByClassName('right-section')[0].style.position = 'absolute';
-                } else {
-                    document.getElementsByClassName('left-section')[0].style.position = '';
-                    document.getElementsByClassName('right-section')[0].style.position = '';
+                    /*if (scroll > document.getElementsByClassName('pagination')[0].offsetTop - (window.innerHeight)) {
+                        document.getElementsByClassName('left-section')[0].style.position = 'absolute';
+                        document.getElementsByClassName('right-section')[0].style.position = 'absolute';
+                    } else {
+                        document.getElementsByClassName('left-section')[0].style.position = '';
+                        document.getElementsByClassName('right-section')[0].style.position = '';
+                    }*/
+                } catch (e) {
                 }
             }
         },
@@ -220,12 +223,15 @@
                         let item = this.items[index];
                         let main = document.getElementsByClassName('main-section')[0];
                         if (main.offsetWidth + 100 > window.window.innerWidth) {
-                            window.location.href += 'item/' + item.id;
+                            window.location.href = '/item/' + item.id;
                             return;
                         }
-                        if (document.getElementsByClassName('nav-icon')[4].offsetTop == 0) {
-                            main.style.marginLeft = '0%';
-                        }
+                        /*try {
+                            if (document.getElementsByClassName('nav-icon')[4].offsetTop == 0) {
+                                main.style.marginLeft = '0%';
+                            }
+                        } catch (e) {
+                        }*/
                         main.style.width = '100%';
                         this.activeItem = index;
                         this.singleItemMode = false;
@@ -256,12 +262,14 @@
                 document.getElementsByClassName('main-section')[0].style.width = '60%';
                 this.singleItemMode = true;
                 document.getElementById('toast').style.bottom = '-64px';
-                if (document.getElementsByClassName('nav-icon')[4].offsetTop == 0) {
-                    document.getElementsByClassName('main-section')[0].style.marginLeft = '25%';
-                    document.getElementsByClassName('main-section')[0].style.width = '75%';
-                }
+                /*try {
+                    if (document.getElementsByClassName('nav-icon')[4].offsetTop == 0) {
+                        document.getElementsByClassName('main-section')[0].style.marginLeft = '25%';
+                        document.getElementsByClassName('main-section')[0].style.width = '75%';
+                    }
+                } catch (e) {
+                }*/
                 setTimeout(() => {
-                    // this.singleItemMode = true;
                     let items = document.getElementsByClassName('item-card');
                     for (let i = 0; i < items.length; i++) {
                         items[i].style.display = '';
@@ -270,7 +278,12 @@
                 }, 500);
             },
             authorize: function () {
-                window.location.href = 'http://127.0.0.1:8000/redirect';
+                if (axios.defaults.headers.common.Authorization !== undefined && axios.defaults.headers.common.Authorization.length > 20) {
+                    axios.post(`/api/buy/${this.items[this.activeItem].id}`, {})
+                        .then(response => {
+                        });
+                } else
+                    window.location.href = 'http://127.0.0.1:8000/redirect?id=' + this.items[this.activeItem].id;
             },
             preventIt: function () {
                 this.preventDefault = true;
@@ -286,10 +299,6 @@
         height: 32px;
         width: 32px;
         border-radius: 50%;
-    }
-
-    .back:hover {
-        box-shadow: inset 0 0 4px 0 #b2b2b2;
     }
 
     .back img {

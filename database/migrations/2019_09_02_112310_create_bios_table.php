@@ -20,7 +20,7 @@ class CreateBiosTable extends Migration
             $table->string('avatar');
             $table->text('about')->nullable();
             $table->string('location')->nullable();
-            $table->text('payment_code')->nullable();
+            $table->text('payment_id')->nullable();
             $table->timestamps();
         });
     }

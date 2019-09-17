@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Wallet;
 
+use App\Http\Controllers\Api\Money\BuyController;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,8 +16,11 @@ class WalletController extends Controller
     public function redirect()
     {
 
-        if (\Illuminate\Support\Facades\Session::has('access_token'))
-            return redirect('');
+        Session::put('back', url()->previous());
+
+        if (Session::has('access_token'))
+            return redirect()->back();
+//            return redirect()->route('buy')->with('id', (int)$_GET['id']);
 
         $query = http_build_query([
             'client_id' => config('pop.sites.c-pay.client_id'),
@@ -46,7 +50,7 @@ class WalletController extends Controller
 
         Session::put('access_token', $data['access_token']);
 
-        return redirect('/');
+        return redirect(Session::get('back'));
     }
 
     public function addPayment()
@@ -66,6 +70,7 @@ class WalletController extends Controller
 
     public function savePayment(Request $request)
     {
+//        todo:add the user_id from the other site
         $bio = Auth::user()->bio;
         $bio->payment_code = $request->code;
         $bio->save();

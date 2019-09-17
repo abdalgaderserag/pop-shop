@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Bio extends Model
 {
 
-    protected $hidden = [
-        'payment_code',
+    protected $fillable = [
+        'payment_id',
     ];
 
     public function getTypeAttribute()

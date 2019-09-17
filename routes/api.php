@@ -28,3 +28,21 @@ Route::apiResource('cart', 'Api\Money\CartController');
 Route::post('upload', 'UpLoadController');
 
 Route::get('/request', 'Wallet\WalletController@getRequest');
+
+Route::post('/buy/{id}', function (Request $request, $id) {
+
+
+    $item = \App\Item::find($id);
+    if (empty($item))
+        return response()->json('cant find the item you looking for!', 404);
+
+    $user = $item->user;
+
+    $data = [
+        'recipient_id' => $user->bio->payment_id,
+        'amount' => $item->budget,
+        'details' => "for the $item->title you post at pop shop site",
+    ];
+
+    return response()->json($data);
+});

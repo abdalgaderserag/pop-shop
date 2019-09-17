@@ -27,6 +27,6 @@ Route::resource('profile', 'User\UserController')->except(['store', 'create']);
 Route::get('/redirect', 'Wallet\WalletController@redirect');
 Route::get('/callback', 'Wallet\WalletController@callback');
 Route::get('/add/payment', 'Wallet\WalletController@addPayment');
-Route::get ('/save/payment', 'Wallet\WalletController@savePayment');
+Route::get('/save/payment', 'Wallet\WalletController@savePayment');
 
-Route::get('/callback', 'Api\Money\BuyController');
+//Route::get('/callback', 'Api\Money\BuyController')->name('buy');

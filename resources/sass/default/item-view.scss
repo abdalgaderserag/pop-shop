@@ -96,6 +96,7 @@
     }
 
     .item-tag {
+      user-select: none;
       height: 20px;
       width: max-content;
       border-radius: 12px;
