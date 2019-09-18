@@ -29,7 +29,7 @@
             @else
                 @foreach(config('pop.category') as $category)
                     <div class="nav-item nav-icon">
-                        <a class="link-clear nav-link" href="/dashboard?{{ $category }}">
+                        <a class="link-clear nav-link" href="/#{{ $category }}">
                             {{ $category }}
                         </a>
                     </div>

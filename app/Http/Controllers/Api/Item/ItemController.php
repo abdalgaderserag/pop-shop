@@ -66,16 +66,16 @@ class ItemController extends Controller
         $item->save();
 
 //        try {
-            $category = new Category($request->only(['seconder_type', 'location', 'exchangeable', 'used']));
+        $category = new Category($request->only(['seconder_type', 'location', 'exchangeable', 'used']));
 
-            if (empty($request->base_type))
-                $category->base_type = 'other';
-            else
-                $category->base_type = $request->base_type;
+        if (empty($request->base_type))
+            $category->base_type = 'other';
+        else
+            $category->base_type = $request->base_type;
 
-            $category->item_id = $item->id;
+        $category->item_id = $item->id;
 
-            $category->save();
+        $category->save();
 //        } catch (\Exception $e) {
 //            $item->delete();
 //        }

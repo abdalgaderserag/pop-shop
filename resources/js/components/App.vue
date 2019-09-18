@@ -278,11 +278,10 @@
                 }, 500);
             },
             authorize: function () {
-                if (axios.defaults.headers.common.Authorization !== undefined && axios.defaults.headers.common.Authorization.length > 20) {
-                    axios.post(`/api/buy/${this.items[this.activeItem].id}`, {})
-                        .then(response => {
-                        });
-                } else
+                if (axios.defaults.headers.common.Authorization !== undefined
+                    && axios.defaults.headers.common.Authorization.length > 20)
+                    axios.post(`/api/buy/${this.items[this.activeItem].id}`, {});
+                else
                     window.location.href = 'http://127.0.0.1:8000/redirect?id=' + this.items[this.activeItem].id;
             },
             preventIt: function () {
