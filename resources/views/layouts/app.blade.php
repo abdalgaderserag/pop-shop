@@ -27,7 +27,7 @@
 <script>
     @if(session()->has('access_token'))
         axios.defaults.headers.common['Authorization'] = 'Bearer {{ \Illuminate\Support\Facades\Session::get('access_token') }}';
-            @endif
+    @endif
 
     let app = new Vue({
             el: '#app',

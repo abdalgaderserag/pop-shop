@@ -39,7 +39,8 @@
             </div>
 
             <div class="filter">
-                <input type="submit" style="width: 85%" @click="resetInput()" value="Reset" class="input-text input-button">
+                <input type="submit" style="width: 85%" @click="resetInput()" value="Reset"
+                       class="input-text input-button">
             </div>
         </div>
     </div>
@@ -130,7 +131,7 @@
                         url = url + this.checks[i].name + '=true&';
 
                 url = '#' + url.slice(0, url.length - 1);
-                this.url = url == '#' ? '' : + url;
+                this.url = url == '#' ? '' : +url;
                 window.location.href = window.location.origin + url;
             },
         }

@@ -130,6 +130,7 @@
 </template>
 
 <script>
+
     export default {
         name: "App",
         data() {
@@ -165,6 +166,7 @@
                     this.items[i].hart = this.hart;
                 }
             });
+
             document.onscroll = (e) => {
                 let scroll = window.scrollY;
                 try {
@@ -196,6 +198,11 @@
                         this.pages = page;
                     else
                         this.pages = Number.parseInt(page) + 1;
+                    setTimeout(() => {
+
+                        this.paresUrlItem();
+
+                    }, 10)
                 });
             },
             parseTime: function (time) {
@@ -234,6 +241,7 @@
                         }*/
                         main.style.width = '100%';
                         this.activeItem = index;
+                        this.paresUrlItem(index);
                         this.singleItemMode = false;
                         this.screenLocation = window.scrollY;
                         let element = document.getElementsByClassName('item-card')[index];
@@ -255,6 +263,8 @@
                 setTimeout(function () {
                     document.getElementById('toast').style.bottom = '-64px';
                 }, 2200);
+
+                window.location.hash
             },
             normalMode: function () {
                 this.displayItem();
@@ -280,13 +290,28 @@
             authorize: function () {
                 if (axios.defaults.headers.common.Authorization !== undefined
                     && axios.defaults.headers.common.Authorization.length > 20)
-                    axios.post(`/api/buy/${this.items[this.activeItem].id}`, {});
+                    axios.post(`/api/buy/${this.items[this.activeItem].id}`, {
+                        authorization: axios.defaults.headers.common.Authorization,
+                    }).then(response => {
+                        console.log(response);
+                    });
                 else
                     window.location.href = 'http://127.0.0.1:8000/redirect?id=' + this.items[this.activeItem].id;
             },
             preventIt: function () {
                 this.preventDefault = true;
-            }
+            },
+            paresUrlItem: function (index = '') {
+                try {
+                    let hash = window.location.hash.split('item')[1].split('&')[0];
+                    hash = Number.parseInt(hash.slice(1, hash.length));
+                    for (let i = 0; i < this.items.length; i++) {
+                        if (this.items[i].id == hash)
+                            this.$el.getElementsByClassName('item-card')[i].click();
+                    }
+                } catch (e) {
+                }
+            },
         }
     }
 </script>

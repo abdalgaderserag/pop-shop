@@ -18,10 +18,12 @@ class WalletController extends Controller
 
         Session::put('back', url()->previous());
 
-        if (Session::has('access_token'))
+        if (Session::has('access_token')) {
+            Session::remove('back');
             return redirect()->back();
-//            return redirect()->route('buy')->with('id', (int)$_GET['id']);
+        }
 
+//      build the request to authorize server
         $query = http_build_query([
             'client_id' => config('pop.sites.c-pay.client_id'),
             'redirect_uri' => url('/') . '/callback',
@@ -29,11 +31,13 @@ class WalletController extends Controller
             'scope' => '',
         ]);
 
-        return redirect('http://127.0.0.1:9000/oauth/authorize?' . $query);
+//        navigate to the server
+        return redirect(config('pop.sites.c-pay.url') . '/oauth/authorize?' . $query);
     }
 
     public function callback(Request $request)
     {
+//        send the request to get the access token
         $http = new Client();
         $response = $http->post(config('pop.sites.c-pay.url') . '/oauth/token',
             [
@@ -41,7 +45,7 @@ class WalletController extends Controller
                     'grant_type' => 'authorization_code',
                     'client_id' => config('pop.sites.c-pay.client_id'),
                     'client_secret' => config('pop.sites.c-pay.client_secret'),
-                    'redirect_uri' => 'http://127.0.0.1:8000/callback',
+                    'redirect_uri' => url('') . '/callback',
                     'code' => $request->code
                 ]
             ]);
