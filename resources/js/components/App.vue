@@ -78,9 +78,13 @@
                         </div>
                     </div>
                     <div v-if="!singleItemMode" class="item-text">
-                        <button class="input-button" style="width: 26%;border-width:0;margin-bottom: 16px;"
-                                @click="authorize()">Buy
-                        </button>
+                        <!--<button class="input-button" style="width: 26%;border-width:0;margin-bottom: 16px;"-->
+                        <!--@click="authorize()">Buy-->
+                        <!--</button>-->
+                        <form action="/buy" method="POST">
+                            <button class="input-button" type="submit" style="width: 26%;border-width:0;margin-bottom: 16px;">Buy
+                            </button>
+                        </form>
                     </div>
                     <div v-if="!singleItemMode" class="item-text">
                         <div style="font-size: 2.4vh">{{ item.details }}</div>
@@ -288,7 +292,7 @@
                 }, 500);
             },
             authorize: function () {
-                if (axios.defaults.headers.common.Authorization !== undefined
+                /*if (axios.defaults.headers.common.Authorization !== undefined
                     && axios.defaults.headers.common.Authorization.length > 20)
                     axios.post(`/api/buy/${this.items[this.activeItem].id}`, {
                         authorization: axios.defaults.headers.common.Authorization,
@@ -296,7 +300,8 @@
                         console.log(response);
                     });
                 else
-                    window.location.href = 'http://127.0.0.1:8000/redirect?id=' + this.items[this.activeItem].id;
+                    window.location.href = 'http://127.0.0.1:8000/redirect?id=' + this.items[this.activeItem].id;*/
+
             },
             preventIt: function () {
                 this.preventDefault = true;

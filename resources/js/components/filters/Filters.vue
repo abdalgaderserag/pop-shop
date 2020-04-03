@@ -84,6 +84,8 @@
                 this.stock = '';
                 for (let i = 0; i < this.checks.length; i++)
                     this.checks[i].status = false;
+
+                window.location.hash = '';
             },
             checkit: function (index) {
                 this.checks[index].status = !this.checks[index].status;
