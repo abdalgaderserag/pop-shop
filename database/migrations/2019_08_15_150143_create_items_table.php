@@ -18,8 +18,7 @@ class CreateItemsTable extends Migration
             $table->uuid('user_id');
             $table->string('title');
             $table->text('details');
-            $table->integer('budget');
-            $table->smallInteger('cents');
+            $table->bigInteger('budget');
             $table->smallInteger('discount')->nullable();
             $table->timestamp('start_at', 0)->nullable();
             $table->timestamp('end_at', 0)->nullable();

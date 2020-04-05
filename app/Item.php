@@ -31,7 +31,8 @@ class Item extends Model
 //    assign the cents to budget
     public function getBudgetAttribute($value)
     {
-        return $value . '.' . $this->attributes['cents'];
+//        return money_format('',floatval($value) / 100);
+        return floatval($value) / 100;
     }
 
 //    turn the array to string and store it in database

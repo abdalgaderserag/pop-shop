@@ -57,7 +57,7 @@ class ItemController extends Controller
      */
     public function store(ItemRequest $request)
     {
-        $item = new Item($request->only(['title', 'details', 'budget', 'cents', 'images']));
+        $item = new Item($request->only(['title', 'details', 'budget', 'images']));
         $item->user_id = 1;
         if (!$request->unlimited) {
             if ($request->stock == null)

@@ -81,10 +81,10 @@
                         <!--<button class="input-button" style="width: 26%;border-width:0;margin-bottom: 16px;"-->
                         <!--@click="authorize()">Buy-->
                         <!--</button>-->
-                        <form action="/buy" method="POST">
+                        <!--<form action="/buy" method="POST">-->
                             <button class="input-button" type="submit" style="width: 26%;border-width:0;margin-bottom: 16px;">Buy
                             </button>
-                        </form>
+                        <!--</form>-->
                     </div>
                     <div v-if="!singleItemMode" class="item-text">
                         <div style="font-size: 2.4vh">{{ item.details }}</div>
